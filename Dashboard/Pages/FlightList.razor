@@ -1,0 +1,41 @@
+﻿@* @inject FlightHubService FlightHub *@
+
+@* <h3>Flights Status</h3> *@
+
+@* <ul> *@
+@*     @foreach (var flight in Flights) *@
+@*     { *@
+@*         <li>@flight.FlightId - @flight.Status</li> *@
+@*     } *@
+@* </ul> *@
+
+@* @code { *@
+@*     private List<Flight> Flights = new(); *@
+
+@*     protected override async Task OnInitializedAsync() *@
+@*     { *@
+@*         FlightHub.OnFlightStatusReceived += UpdateFlightStatus; *@
+@*         await FlightHub.ConnectAsync(); *@
+@*     } *@
+
+@*     private void UpdateFlightStatus(string flightId, string newStatus) *@
+@*     { *@
+@*         var flight = Flights.FirstOrDefault(f => f.FlightId == flightId); *@
+@*         if (flight != null) *@
+@*         { *@
+@*             flight.Status = newStatus; *@
+@*         } *@
+@*         else *@
+@*         { *@
+@*             Flights.Add(new Flight { FlightId = flightId, Status = newStatus }); *@
+@*         } *@
+
+@*         InvokeAsync(StateHasChanged); *@
+@*     } *@
+
+@*     public class Flight *@
+@*     { *@
+@*         public string FlightId { get; set; } *@
+@*         public string Status { get; set; } *@
+@*     } *@
+@* } *@

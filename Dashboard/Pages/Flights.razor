@@ -1,0 +1,76 @@
+﻿@page "/flights"
+@using Microsoft.AspNetCore.SignalR.Client
+
+<h3>Flight Status Updates</h3>
+
+@if (flights == null || !flights.Any())
+{
+    <p>No flight data available.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Flight Number</th>
+                <th>Status</th>
+                <th>Departure Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var flight in flights)
+            {
+                <tr>
+                    <td>@flight.Number</td>
+                    <td>@flight.Status</td>
+                    <td>@flight.DateTime.ToString("g")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<FlightInfo> flights = new();
+    HubConnection connection;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+
+        connection = new HubConnectionBuilder()
+                .WithUrl("https://localhost:7132/flighthub")
+                .WithAutomaticReconnect()
+                .Build();
+
+        connection.On<List<FlightInfo>>("ReceiveInfo", (flightsDoc) =>
+        {
+            flights = flightsDoc;
+            InvokeAsync(StateHasChanged);
+        });
+
+        connection.On<string, string>("ReceiveFlightStatusUpdate", (flightId, newStatus) =>
+        {
+            UpdateFlightStatus(flightId, newStatus);
+            InvokeAsync(StateHasChanged);
+        });
+
+        await connection.StartAsync();
+
+
+        await connection.InvokeAsync("RequestFlightList");
+
+        
+
+    }
+
+    private void UpdateFlightStatus(string flightId, string newStatus)
+    {
+        var flight = flights.FirstOrDefault(f => f.Number == flightId);
+
+        if (flight != null)
+        {
+            flight.Status = newStatus;
+        }
+    }
+}
