@@ -1,4 +1,9 @@
-﻿namespace Server;
+﻿using static System.Net.Mime.MediaTypeNames;
+using System.Drawing;
+using System.IO;
+
+
+namespace Server;
 
 
 public class FlightService
@@ -7,9 +12,10 @@ public class FlightService
 
     public FlightService()
     {
-        Flights.Add(new FlightInfo("FF123", "Boarding"));
-        Flights.Add(new FlightInfo("AF777", "Boarding"));
-        Flights.Add(new FlightInfo("SS137", "Boarding"));
+
+        byte[] airlineLogo = File.ReadAllBytes("AirlineLogos/japan-airlines.png");
+        Flights.Add(new FlightInfo("Japan",airlineLogo,"FF123", "B7" ,DateTime.Now,"Boarding"));
+        
     }
 
     public List<FlightInfo> GetFlights()

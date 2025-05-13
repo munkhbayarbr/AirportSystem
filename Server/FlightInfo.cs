@@ -6,13 +6,22 @@
         public string Status { get; set; }
         public DateTime DateTime { get; set; }
 
-        public FlightInfo() { } // parameterless constructor needed for deserialization
+        public byte[] Airline { get; set; }
 
-        public FlightInfo(string number, string status)
+        public string Direction { get; set; }
+
+        public string Gate { get; set; }
+
+        public FlightInfo() { }
+
+        public FlightInfo(string direction,byte[] airline, string number,string gate, DateTime datetime, string status)
         {
-            Number = number;
+            Direction = direction;
+            Airline = airline;
+            Number =number;
+            Gate = gate;
             Status = status;
-            DateTime = DateTime.Now;
+            DateTime = datetime;
         }
     }
 

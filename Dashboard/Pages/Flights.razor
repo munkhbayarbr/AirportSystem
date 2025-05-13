@@ -1,4 +1,4 @@
-﻿@page "/flights"
+﻿@page "/"
 @using Microsoft.AspNetCore.SignalR.Client
 
 <h3>Flight Status Updates</h3>
@@ -12,18 +12,35 @@ else
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Flight Number</th>
+                <th>Depart to</th>
+                <th>Airline</th>
+                <th>Flight</th>
+                <th>Gate</th>
+                <th>Time</th>
                 <th>Status</th>
-                <th>Departure Time</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var flight in flights)
             {
                 <tr>
+                    <td>@flight.Direction</td>
+                    <td>
+                        @if (flight.Airline != null && flight.Airline.Length > 0)
+                        {
+                            var base64 = Convert.ToBase64String(flight.Airline);
+                            var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                            <img src="@imgSrc" alt="Logo" style="height: 40px;" />
+                        }
+                        else
+                        {
+                            <span>No logo</span>
+                        }
+                    </td>
                     <td>@flight.Number</td>
-                    <td>@flight.Status</td>
+                    <td>@flight.Gate</td>
                     <td>@flight.DateTime.ToString("g")</td>
+                    <td>@flight.Status</td>
                 </tr>
             }
         </tbody>
