@@ -1,15 +1,15 @@
 [
   {
-    "ContainingType": "Server.Controllers.testController",
-    "Method": "Get",
-    "RelativePath": "test",
+    "ContainingType": "Server.Controllers.FlightController",
+    "Method": "GetFlights",
+    "RelativePath": "Flight",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Server.WeatherForecast, Server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Server.DTO.FlightReadDTO, Server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -17,20 +17,57 @@
         ],
         "StatusCode": 200
       }
-    ],
-    "EndpointName": "getMe"
+    ]
   },
   {
-    "ContainingType": "Server.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
+    "ContainingType": "Server.Controllers.FlightController",
+    "Method": "AddFlight",
+    "RelativePath": "Flight",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Server.DTO.FlightCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Server.Controllers.FlightController",
+    "Method": "UpdateFlight",
+    "RelativePath": "Flight",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Server.DTO.FlightUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Server.Controllers.FlightController",
+    "Method": "GetFlightById",
+    "RelativePath": "Flight/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Server.WeatherForecast, Server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Server.DTO.FlightReadDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -38,7 +75,68 @@
         ],
         "StatusCode": 200
       }
+    ]
+  },
+  {
+    "ContainingType": "Server.Controllers.FlightController",
+    "Method": "DeleteFlight",
+    "RelativePath": "Flight/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Server.Controllers.PassengerController",
+    "Method": "GetPassengers",
+    "RelativePath": "Passenger",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Server.DTO.PassengerReadDTO, Server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Server.Controllers.PassengerController",
+    "Method": "GetPassengerById",
+    "RelativePath": "Passenger/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Server.DTO.PassengerReadDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

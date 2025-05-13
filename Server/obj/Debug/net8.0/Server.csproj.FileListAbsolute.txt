@@ -198,3 +198,4 @@ C:\Users\Tuvshuu\Desktop\windows\AirportSystem\Server\bin\Debug\net8.0\runtimes\
 C:\Users\Tuvshuu\Desktop\windows\AirportSystem\Server\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\Tuvshuu\Desktop\windows\AirportSystem\Server\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\Tuvshuu\Desktop\windows\AirportSystem\Server\bin\Debug\net8.0\airport.db
+C:\Users\Tuvshuu\Desktop\windows\AirportSystem\Server\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
