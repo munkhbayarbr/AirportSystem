@@ -1,39 +1,39 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\Dashboard\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "Id": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
     },
     {
-      "Id": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\Dashboard\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Dashboard.styles.css",
+      "Id": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Dashboard.styles.css",
       "PackagePath": "staticwebassets\\Dashboard.styles.css"
     },
     {
-      "Id": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\Dashboard\\wwwroot\\css\\app.css",
+      "Id": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\Dashboard\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\Dashboard\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\Dashboard\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\Dashboard\\wwwroot\\icon-192.png",
+      "Id": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\wwwroot\\icon-192.png",
       "PackagePath": "staticwebassets\\icon-192.png"
     },
     {
-      "Id": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\Dashboard\\wwwroot\\index.html",
+      "Id": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\Dashboard\\wwwroot\\sample-data\\weather.json",
+      "Id": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\wwwroot\\sample-data\\weather.json",
       "PackagePath": "staticwebassets\\sample-data\\weather.json"
     },
     {

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -10,9 +10,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.4" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.4" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="airport.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.SignalR;
 using Server;
+using Server.DA;
 
 
 
@@ -11,6 +12,8 @@ public class Program
     {
 
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddSingleton<AirportDB>(sp => new AirportDB("Datasource=airport.db;"));
 
         builder.Services.AddControllers();
         builder.Services.AddSignalR();

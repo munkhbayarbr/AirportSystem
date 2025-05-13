@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Dashboard",
   "resources": {
-    "hash": "sha256-zxcBuMGRXNtK2EZAQ4HM7YzFh91xwoCCfX9dXQ68BnU=",
+    "hash": "sha256-l4U9mM79prBZF5LubnBPtFKy3TBDpG/hRCDTxFUFAf0=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-B6DNRvFeCUi3jbx9uKpuj+hV9cN0KG4RdZj1FgBZwj8="
     },
@@ -255,10 +255,10 @@
       "mscorlib.wasm": "sha256-QoC5hTKpDNO6efLnEvYwV9OJBXvYRq8/1yGhNZKiNCw=",
       "netstandard.wasm": "sha256-JT2F4bYWJpaSGq+iD0ITLpWxsDhMUjhqje9RpBtTg7w=",
       "System.Private.CoreLib.wasm": "sha256-fvIPBcvgvsRuWrKi2LGQsLYvcKUSnyIuBUsE3LJu/0Y=",
-      "Dashboard.wasm": "sha256-2GLEjytEvscwWkJC8Ils62qWLdBkVbNN2VXpYvKD8Go="
+      "Dashboard.wasm": "sha256-F8FieFTj+tz9tXC6YjqXhqLkuy66crDGRt+ndexfYzc="
     },
     "pdb": {
-      "Dashboard.pdb": "sha256-Exqg4EdOmnrK8COfGKZp7Ai+tQHUdAnxYrs/LXqt1Vs="
+      "Dashboard.pdb": "sha256-0G8d/jjT7n1wM2iofFY79ZJ5L59Mx7YRzzRf9Ggbexs="
     }
   },
   "cacheBootResources": true,

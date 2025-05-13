@@ -1,6 +1,69 @@
-@Server_HostAddress = http://localhost:5106
+﻿@Server_HostAddress = http://localhost:5106
 
-GET {{Server_HostAddress}}/weatherforecast/
+GET http://localhost:7163/flighthub/1
 Accept: application/json
 
 ###
+
+# buh passenger avah
+GET {{Server_HostAddress}}/passenger
+Accept: application/json
+
+###
+
+
+# Id - aar passenger avah
+GET {{Server_HostAddress}}/passenger/1
+Accept: application/json
+
+###
+
+# Бүх flight avah
+GET {{Server_HostAddress}}/flight/
+Accept: application/json
+
+###
+
+# Id-aar flight avah
+GET {{Server_HostAddress}}/flight/2
+Accept: application/json
+
+###
+
+# Post huselt flight
+POST {{Server_HostAddress}}/flight/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "flightNumber": "AA101",
+  "status": "Delayed",
+  "departure": "New York",
+  "arrival": "Los Angeles",
+  "departureTime": "2025-06-01T08:30:00",
+  "arrivalTime": "2025-06-01T11:45:00"
+}
+
+###
+
+# Id-aar flight delete hiih
+DELETE {{Server_HostAddress}}/flight/3
+Accept: application/json
+
+
+###
+
+# Id-aar flight update hiih
+PUT {{Server_HostAddress}}/flight/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 2,
+  "flightNumber": "AA101",
+  "Status": "Flying",
+  "departure": "Boston",
+  "arrival": "Chicago",
+  "departureTime": "2025-06-02T09:00:00",
+  "arrivalTime": "2025-06-02T11:30:00"
+}

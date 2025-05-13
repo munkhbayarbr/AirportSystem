@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\ClientApp\\ClientApp.csproj": {}
+    "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\ClientApp\\ClientApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\ClientApp\\ClientApp.csproj": {
+    "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\ClientApp\\ClientApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\ClientApp\\ClientApp.csproj",
+        "projectUniqueName": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\ClientApp\\ClientApp.csproj",
         "projectName": "ClientApp",
-        "projectPath": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\ClientApp\\ClientApp.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\PassengerCheckInSystem\\ClientApp\\obj\\",
+        "projectPath": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\ClientApp\\ClientApp.csproj",
+        "packagesPath": "C:\\Users\\Tuvshuu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\ClientApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tuvshuu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
