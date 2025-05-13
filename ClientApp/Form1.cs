@@ -43,7 +43,7 @@ namespace ClientApp
 
             panel.Size = new Size(400, 400);
             panel.Visible = false;
-            panel.Location = new Point(panel1.Width/2 + 50, 10);
+            panel.Location = new Point(panel1.Width/2 + 50, 500);
 
             TextBox number = new TextBox();
             number.Location = new Point(10, 10);
@@ -98,7 +98,7 @@ namespace ClientApp
 
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    ms.WriteByte(2); // type 2 = string array
+                    ms.WriteByte(2);
                     ms.Write(BitConverter.GetBytes(stringBytes.Length), 0, 4); // length
                     ms.Write(stringBytes, 0, stringBytes.Length);
 
@@ -202,11 +202,11 @@ namespace ClientApp
             {
                 int index = table.Controls.GetChildIndex(control);
 
-                if (index % 3 == 0) // Only Flight ID column
+                if (index % 6 == 0) // Only Flight ID column
                 {
                     if (control is Label flightLabel && flightLabel.Text == flightId)
                     {
-                        int statusIndex = index + 1;
+                        int statusIndex = index + 3;
                         if (statusIndex < table.Controls.Count)
                         {
                             if (table.Controls[statusIndex] is Label statusLabel)
@@ -218,6 +218,11 @@ namespace ClientApp
                     }
                 }
             }
+        }
+
+        public Image ResizeImage(Image img, int width, int height)
+        {
+            return new Bitmap(img, new Size(width, height));
         }
 
         public void click_Order(object sender, EventArgs e)
@@ -240,8 +245,8 @@ namespace ClientApp
 
             table = new TableLayoutPanel
             {
-                Size = new Size(panel1.Width / 2, tableHeight), // Width depends on panel, Height is EXACT
-                ColumnCount = 3,
+                Size = new Size(panel1.Width, tableHeight), // Width depends on panel, Height is EXACT
+                ColumnCount = 6,
                 Location = new Point(0, 0),
                 CellBorderStyle = TableLayoutPanelCellBorderStyle.Single,
                 AutoSize = false, // Important: Do not AutoSize
@@ -249,26 +254,44 @@ namespace ClientApp
                 Anchor = AnchorStyles.Top | AnchorStyles.Left, // Only anchor top-left
             };
 
+            int logoWidth = info.Width/100*17;
+
             // Set column styles
-            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33f));
-            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33f));
-            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34f));
+            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17f));
+            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17f));
+            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17f));
+            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16f));
+            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16f));
+            table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17f));
 
             table.RowCount = totalRows;
 
             // Add header row
             table.RowStyles.Add(new RowStyle(SizeType.Absolute, rowHeight));
-            table.Controls.Add(new Label { Text = "Flight Number", TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Font = new Font("Arial", 10, FontStyle.Bold) });
-            table.Controls.Add(new Label { Text = "Status", TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Font = new Font("Arial", 10, FontStyle.Bold) });
+            table.Controls.Add(new Label { Text = "Depart to", TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Font = new Font("Arial", 10, FontStyle.Bold) });
+            table.Controls.Add(new Label { Text = "Airline", TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Font = new Font("Arial", 10, FontStyle.Bold) });
+            table.Controls.Add(new Label { Text = "Flight", TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Font = new Font("Arial", 10, FontStyle.Bold) });
+            table.Controls.Add(new Label { Text = "Gate", TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Font = new Font("Arial", 10, FontStyle.Bold) });
             table.Controls.Add(new Label { Text = "Time", TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Font = new Font("Arial", 10, FontStyle.Bold) });
+            table.Controls.Add(new Label { Text = "Status", TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Font = new Font("Arial", 10, FontStyle.Bold) });
 
             // Add data rows
             foreach (var flight in flights)
             {
                 table.RowStyles.Add(new RowStyle(SizeType.Absolute, rowHeight));
+                table.Controls.Add(new Label { Text = flight.Direction, TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill });
+                MemoryStream ms = new MemoryStream(flight.Airline);
+                Image image = Image.FromStream(ms);
+                image = ResizeImage(image, logoWidth, rowHeight);
+                PictureBox pictureBox = new PictureBox();
+                pictureBox.Image = image;
+                pictureBox.Width = logoWidth;
+                pictureBox.Height = rowHeight;
+                table.Controls.Add(pictureBox);
                 table.Controls.Add(new Label { Text = flight.Number, TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill });
-                table.Controls.Add(new Label { Text = flight.Status, TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill });
+                table.Controls.Add(new Label { Text = flight.Gate, TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill });
                 table.Controls.Add(new Label { Text = flight.DateTime.ToString("g"), TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill });
+                table.Controls.Add(new Label { Text = flight.Status, TextAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill });
             }
 
             info.Controls.Add(table);
