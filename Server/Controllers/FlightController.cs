@@ -6,7 +6,7 @@ namespace Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class FlightController: ControllerBase
+    public class FlightController : ControllerBase
     {
         private readonly ILogger<FlightController> _logger;
 
@@ -16,34 +16,53 @@ namespace Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public FlightReadDTO? GetFlightById(AirportDB airportdb, int id)
+        public async Task<IActionResult> GetFlightById([FromServices] AirportDB airportdb, int id)
         {
-            return airportdb.Flight.GetFlight(id);
+            var flight = await airportdb.Flight.GetFlight(id);
+            if (flight == null)
+            {
+                return NotFound();
+            }
+            return Ok(flight);
         }
 
         [HttpGet("")]
-        public IEnumerable<FlightReadDTO> GetFlights(AirportDB airportdb)
+        public async Task<IActionResult> GetFlights([FromServices] AirportDB airportdb)
         {
-            return airportdb.Flight.GetAllFlights();
+            var flights = await airportdb.Flight.GetAllFlights();
+            return Ok(flights);
         }
 
         [HttpPost]
-        public IActionResult AddFlight(AirportDB airportdb, [FromBody] FlightCreateDTO dto)
+        public async Task<IActionResult> AddFlight([FromServices] AirportDB airportdb, [FromBody] FlightCreateDTO dto)
         {
-            airportdb.Flight.AddFlight(dto.FlightNumber, dto.Status, dto.Departure, dto.Arrival, dto.DepartureTime, dto.ArrivalTime);
+            FlightReadDTO flight = await airportdb.Flight.AddFlight(dto.FlightNumber, dto.Status, dto.Departure, dto.Arrival, dto.DepartureTime, dto.ArrivalTime, dto.SeatCount);
+
+            for (int i = 1; i <= dto.SeatCount; i++)
+            {
+                await airportdb.Seat.AddSeat(flight.Id, i, false);
+            }
+
             return Ok(new { message = "Flight added successfully." });
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteFlight(AirportDB airportdb, int id) { 
-            airportdb.Flight.DeleteFlight(id);
+        public async Task<IActionResult> DeleteFlight([FromServices] AirportDB airportdb, int id)
+        {
+            await airportdb.Flight.DeleteFlight(id);
+
+            var seats = await airportdb.Seat.GetSeatsByFlightId(id);
+            foreach (var seat in seats)
+            {
+                await airportdb.Seat.DeleteSeat(id, seat.SeatNumber);
+            }
             return Ok(new { message = "Flight deleted successfully." });
         }
 
         [HttpPut]
-        public IActionResult UpdateFlight(AirportDB airportdb, [FromBody] FlightUpdateDTO dto)
+        public async Task<IActionResult> UpdateFlight([FromServices] AirportDB airportdb, [FromBody] FlightUpdateDTO dto)
         {
-            airportdb.Flight.UpdateFlight(dto.Id, dto.FlightNumber, dto.Status, dto.Departure, dto.Arrival, dto.DepartureTime, dto.ArrivalTime);
+            await airportdb.Flight.UpdateFlight(dto.Id, dto.FlightNumber, dto.Status, dto.Departure, dto.Arrival, dto.DepartureTime, dto.ArrivalTime, dto.SeatCount);
             return Ok(new { message = "Flight updated successfully." });
         }
     }

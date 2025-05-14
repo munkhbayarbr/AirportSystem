@@ -9,7 +9,7 @@ namespace Server.DA
         public PassengerDA Passenger;
         public FlightDA Flight;
         public BookingDA Booking;
-
+        public SeatDB Seat;
 
         private readonly string _connectionString;
         public AirportDB(string connectionString)
@@ -18,6 +18,7 @@ namespace Server.DA
             Passenger = new PassengerDA(connectionString);
             Flight = new FlightDA(connectionString);
             Booking = new BookingDA(connectionString);
+            Seat = new SeatDB(connectionString);
         }
     }
 }

@@ -6,127 +6,157 @@ namespace Server.DA
     public class FlightDA
     {
         private readonly string _connectionString;
+
         public FlightDA(string connectionString)
         {
-            this._connectionString = connectionString;
+            _connectionString = connectionString;
         }
-        public void AddFlight(string flightNumber, string status, string departure, string arrival, DateTime departureTime, DateTime arrivalTime)
+
+        public async Task<FlightReadDTO> AddFlight(string flightNumber, string status, string departure, string arrival, DateTime departureTime, DateTime arrivalTime, int seatCount)
         {
-            using (var connection = new SqliteConnection(_connectionString))
-            {
-                connection.Open();
-                var command = connection.CreateCommand();
-                command.CommandText =
-                @"
-                    INSERT INTO Flight (FlightNumber, Status, Departure, Arrival, DepartureTime, ArrivalTime)
-                    VALUES ($flightNumber, $status, $departure, $arrival, $departureTime, $arrivalTime);
-                ";
-                command.Parameters.AddWithValue("$flightNumber", flightNumber);
-                command.Parameters.AddWithValue("$status", status);
-                command.Parameters.AddWithValue("$departure", departure);
-                command.Parameters.AddWithValue("$arrival", arrival);
-                command.Parameters.AddWithValue("$departureTime", departureTime);
-                command.Parameters.AddWithValue("$arrivalTime", arrivalTime);
-                command.ExecuteNonQuery();
-            }
+            using var connection = new SqliteConnection(_connectionString);
+            await connection.OpenAsync();
+
+            var command = connection.CreateCommand();
+            command.CommandText =
+            @"
+                INSERT INTO Flight (FlightNumber, Status, Departure, Arrival, DepartureTime, ArrivalTime, SeatCount)
+                VALUES ($flightNumber, $status, $departure, $arrival, $departureTime, $arrivalTime, $seatCount);
+            ";
+            command.Parameters.AddWithValue("$flightNumber", flightNumber);
+            command.Parameters.AddWithValue("$status", status);
+            command.Parameters.AddWithValue("$departure", departure);
+            command.Parameters.AddWithValue("$arrival", arrival);
+            command.Parameters.AddWithValue("$departureTime", departureTime);
+            command.Parameters.AddWithValue("$arrivalTime", arrivalTime);
+            command.Parameters.AddWithValue("$seatCount", seatCount);
+
+            await command.ExecuteNonQueryAsync();
+
+            // Id - oloh
+            var idCommand = connection.CreateCommand();
+            idCommand.CommandText = "SELECT last_insert_rowid();";
+            var flightId = Convert.ToInt32(await idCommand.ExecuteScalarAsync());
+            return new FlightReadDTO(
+                Id: flightId,
+                FlightNumber: flightNumber,
+                Status: status,
+                Departure: departure,
+                Arrival: arrival,
+                DepartureTime: departureTime,
+                ArrivalTime: arrivalTime,
+                SeatCount: seatCount
+            );
         }
-        public void UpdateFlight(int flightId, string flightNumber, string status, string departure, string arrival, DateTime departureTime, DateTime arrivalTime)
+
+        public async Task UpdateFlight(int flightId, string flightNumber, string status, string departure, string arrival, DateTime departureTime, DateTime arrivalTime, int seatCount)
         {
-            using (var connection = new SqliteConnection(_connectionString))
-            {
-                connection.Open();
-                var command = connection.CreateCommand();
-                command.CommandText =
-                @"
-                    UPDATE Flight
-                    SET FlightNumber = $flightNumber, Status = $status, Departure = $departure, Arrival = $arrival, DepartureTime = $departureTime, ArrivalTime = $arrivalTime
-                    WHERE Id = $flightId;
-                ";
-                command.Parameters.AddWithValue("$flightId", flightId);
-                command.Parameters.AddWithValue("$status", status);
-                command.Parameters.AddWithValue("$flightNumber", flightNumber);
-                command.Parameters.AddWithValue("$departure", departure);
-                command.Parameters.AddWithValue("$arrival", arrival);
-                command.Parameters.AddWithValue("$departureTime", departureTime);
-                command.Parameters.AddWithValue("$arrivalTime", arrivalTime);
-                command.ExecuteNonQuery();
-            }
+            using var connection = new SqliteConnection(_connectionString);
+            await connection.OpenAsync();
+
+            var command = connection.CreateCommand();
+            command.CommandText =
+            @"
+                UPDATE Flight
+                SET FlightNumber = $flightNumber,
+                    Status = $status,
+                    Departure = $departure,
+                    Arrival = $arrival,
+                    DepartureTime = $departureTime,
+                    ArrivalTime = $arrivalTime,
+                    SeatCount = $seatCount
+                WHERE Id = $flightId;
+            ";
+            command.Parameters.AddWithValue("$flightId", flightId);
+            command.Parameters.AddWithValue("$status", status);
+            command.Parameters.AddWithValue("$flightNumber", flightNumber);
+            command.Parameters.AddWithValue("$departure", departure);
+            command.Parameters.AddWithValue("$arrival", arrival);
+            command.Parameters.AddWithValue("$departureTime", departureTime);
+            command.Parameters.AddWithValue("$arrivalTime", arrivalTime);
+            command.Parameters.AddWithValue("$seatCount", seatCount);
+
+            await command.ExecuteNonQueryAsync();
         }
-        public void DeleteFlight(int flightId)
+
+        public async Task DeleteFlight(int flightId)
         {
-            using (var connection = new SqliteConnection(_connectionString))
-            {
-                connection.Open();
-                var command = connection.CreateCommand();
-                command.CommandText =
-                @"
-                    DELETE FROM Flight
-                    WHERE Id = $flightId;
-                ";
-                command.Parameters.AddWithValue("$flightId", flightId);
-                command.ExecuteNonQuery();
-            }
+            using var connection = new SqliteConnection(_connectionString);
+            await connection.OpenAsync();
+
+            var command = connection.CreateCommand();
+            command.CommandText =
+            @"
+                DELETE FROM Flight
+                WHERE Id = $flightId;
+            ";
+            command.Parameters.AddWithValue("$flightId", flightId);
+
+            await command.ExecuteNonQueryAsync();
         }
-        public IEnumerable<FlightReadDTO> GetAllFlights()
+
+        public async Task<IEnumerable<FlightReadDTO>> GetAllFlights()
         {
-            using (var connection = new SqliteConnection(_connectionString))
+            var flights = new List<FlightReadDTO>();
+
+            using var connection = new SqliteConnection(_connectionString);
+            await connection.OpenAsync();
+
+            var command = connection.CreateCommand();
+            command.CommandText =
+            @"
+                SELECT *
+                FROM Flight;
+            ";
+
+            using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
             {
-                connection.Open();
-                var command = connection.CreateCommand();
-                command.CommandText =
-                @"
-                    SELECT *
-                    FROM Flight;
-                ";
-                using (var reader = command.ExecuteReader())
-                {
-                    var flights = new List<FlightReadDTO>();
-                    while (reader.Read())
-                    {
-                        flights.Add(new FlightReadDTO(
-                            Id: Convert.ToInt32(reader["Id"]),
-                            FlightNumber: (string)reader["FlightNumber"],
-                            Status: (string)reader["Status"],
-                            Departure: (string)reader["Departure"],
-                            Arrival: (string)reader["Arrival"],
-                            DepartureTime: DateTime.Parse(reader["DepartureTime"].ToString()),
-                            ArrivalTime: DateTime.Parse(reader["ArrivalTime"].ToString())
-                        ));
-                    }
-                    return flights;
-                }
+                flights.Add(new FlightReadDTO(
+                    Id: Convert.ToInt32(reader["Id"]),
+                    FlightNumber: (string)reader["FlightNumber"],
+                    Status: (string)reader["Status"],
+                    Departure: (string)reader["Departure"],
+                    Arrival: (string)reader["Arrival"],
+                    DepartureTime: DateTime.Parse(reader["DepartureTime"].ToString() ?? string.Empty),
+                    ArrivalTime: DateTime.Parse(reader["ArrivalTime"].ToString() ?? string.Empty),
+                    SeatCount: Convert.ToInt32(reader["SeatCount"])
+                ));
             }
+
+            return flights;
         }
-        public FlightReadDTO? GetFlight(int flightId)
+
+        public async Task<FlightReadDTO?> GetFlight(int flightId)
         {
-            using (var connection = new SqliteConnection(_connectionString))
+            using var connection = new SqliteConnection(_connectionString);
+            await connection.OpenAsync();
+
+            var command = connection.CreateCommand();
+            command.CommandText =
+            @"
+                SELECT *
+                FROM Flight
+                WHERE Id = $flightId;
+            ";
+            command.Parameters.AddWithValue("$flightId", flightId);
+
+            using var reader = await command.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
             {
-                connection.Open();
-                var command = connection.CreateCommand();
-                command.CommandText =
-                @"
-                    SELECT *
-                    FROM Flight
-                    WHERE Id = $flightId;
-                ";
-                command.Parameters.AddWithValue("$flightId", flightId);
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        return new FlightReadDTO(
-                            Id: Convert.ToInt32(reader["Id"]),
-                            FlightNumber: (string)reader["FlightNumber"],
-                            Status: (string)reader["Status"],
-                            Departure: (string)reader["Departure"],
-                            Arrival: (string)reader["Arrival"],
-                            DepartureTime: DateTime.Parse(reader["DepartureTime"].ToString()),
-                            ArrivalTime: DateTime.Parse(reader["ArrivalTime"].ToString())
-                        );
-                    }
-                    return null;
-                }
+                return new FlightReadDTO(
+                    Id: Convert.ToInt32(reader["Id"]),
+                    FlightNumber: (string)reader["FlightNumber"],
+                    Status: (string)reader["Status"],
+                    Departure: (string)reader["Departure"],
+                    Arrival: (string)reader["Arrival"],
+                    DepartureTime: DateTime.Parse(reader["DepartureTime"].ToString() ?? string.Empty),
+                    ArrivalTime: DateTime.Parse(reader["ArrivalTime"].ToString() ?? string.Empty),
+                    SeatCount: Convert.ToInt32(reader["SeatCount"])
+                );
             }
+
+            return null;
         }
     }
 }

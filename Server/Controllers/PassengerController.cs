@@ -6,9 +6,8 @@ namespace Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PassengerController
+    public class PassengerController : ControllerBase
     {
-
         private readonly ILogger<PassengerController> _logger;
 
         public PassengerController(ILogger<PassengerController> logger)
@@ -17,16 +16,22 @@ namespace Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public PassengerReadDTO? GetPassengerById(AirportDB airportdb, int id)
+        public async Task<IActionResult> GetPassengerById([FromServices] AirportDB airportdb, int id)
         {
-            return airportdb.Passenger.GetPassenger(id);
+            var passenger = await airportdb.Passenger.GetPassenger(id);
+            if (passenger == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(passenger);
         }
 
-
         [HttpGet("")]
-        public IEnumerable<PassengerReadDTO> GetPassengers(AirportDB airportdb)
+        public async Task<IActionResult> GetPassengers([FromServices] AirportDB airportdb)
         {
-            return airportdb.Passenger.GetAllPassengers();
+            var passengers = await airportdb.Passenger.GetAllPassengers();
+            return Ok(passengers);
         }
     }
 }

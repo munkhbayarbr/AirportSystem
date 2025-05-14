@@ -41,13 +41,14 @@ Accept: application/json
   "departure": "New York",
   "arrival": "Los Angeles",
   "departureTime": "2025-06-01T08:30:00",
-  "arrivalTime": "2025-06-01T11:45:00"
+  "arrivalTime": "2025-06-01T11:45:00",
+  "seatCount": 30
 }
 
 ###
 
 # Id-aar flight delete hiih
-DELETE {{Server_HostAddress}}/flight/3
+DELETE {{Server_HostAddress}}/flight/1
 Accept: application/json
 
 
@@ -67,3 +68,43 @@ Accept: application/json
   "departureTime": "2025-06-02T09:00:00",
   "arrivalTime": "2025-06-02T11:30:00"
 }
+
+
+###
+
+# FlightId-aar Бүх seat avah
+GET {{Server_HostAddress}}/seat/1
+Accept: application/json
+
+
+###
+
+# Booking nemeh
+POST {{Server_HostAddress}}/booking/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "passengerId": 1,
+  "flightId": 1,
+  "seatNumber": 5,
+  "bookingDate": "2025-06-02T09:00:00"
+}
+
+###
+
+# Buh booking avah
+GET {{Server_HostAddress}}/booking/
+Accept: application/json
+
+###
+
+# ID-aar booking avah
+GET {{Server_HostAddress}}/booking/1
+Accept: application/json
+
+###
+
+
+# Id-aar booking ustgah
+DELETE {{Server_HostAddress}}/booking/1
