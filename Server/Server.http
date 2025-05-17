@@ -122,3 +122,9 @@ Accept: application/json
   "bookingDate": "2025-06-02T09:00:00",
   "seatNumber": 1
 }
+
+###
+
+# Passport Id-aar booking avah
+GET {{Server_HostAddress}}/booking/getByPassportId/1
+Accept: application/json

@@ -1,22 +1,6 @@
 [
   {
     "ContainingType": "Server.Controllers.BookingController",
-    "Method": "GetBookingsByPassengerId",
-    "RelativePath": "{PassportId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "PassportId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Server.Controllers.BookingController",
     "Method": "GetBookings",
     "RelativePath": "Booking",
     "HttpMethod": "GET",
@@ -83,6 +67,22 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Server.Controllers.BookingController",
+    "Method": "GetBookingsByPassengerId",
+    "RelativePath": "Booking/getByPassportId/{PassportId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PassportId",
         "Type": "System.Int32",
         "IsRequired": true
       }

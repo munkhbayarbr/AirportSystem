@@ -33,7 +33,7 @@ namespace Server.Controllers
             return Ok(bookings);
         }
 
-        [HttpGet("/{PassportId}")]
+        [HttpGet("getByPassportId/{PassportId}")]
         public async Task<IActionResult> GetBookingsByPassengerId([FromServices] AirportDB airportdb, int PassportId)
         {
             var bookings = await airportdb.Booking.GetBookingsByPassengerId(PassportId);
