@@ -33,22 +33,59 @@ namespace Server.Controllers
             return Ok(bookings);
         }
 
+        [HttpGet("/{PassportId}")]
+        public async Task<IActionResult> GetBookingsByPassengerId([FromServices] AirportDB airportdb, int PassportId)
+        {
+            var bookings = await airportdb.Booking.GetBookingsByPassengerId(PassportId);
+            if (bookings == null)
+            {
+                return NotFound();
+            }
+            return Ok(bookings);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddBooking([FromServices] AirportDB airportdb, [FromBody] BookingCreateDTO dto)
-        {         
-            SeatDTO seat = await airportdb.Seat.GetSeat(dto.FlightId, dto.SeatNumber);
-            if (seat == null)
-            {
-                return NotFound(new { message = "Seat not found." });
-            }
-            if (seat.isOccupied)
-            {
-                return BadRequest(new { message = "Seat is already occupied." });
-            }
-            await airportdb.Seat.UpdateSeat(dto.FlightId, dto.SeatNumber, true);
+        {
+            //SeatDTO seat = await airportdb.Seat.GetSeat(dto.FlightId, dto.SeatNumber);
+            //if (seat == null)
+            //{
+            //    return NotFound(new { message = "Seat not found." });
+            //}
+            //if (seat.isOccupied)
+            //{
+            //    return BadRequest(new { message = "Seat is already occupied." });
+            //}
+            //await airportdb.Seat.UpdateSeat(dto.FlightId, dto.SeatNumber, true);
             await airportdb.Booking.AddBooking(dto);
             return Ok(new { message = "Booking added successfully." });
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateBooking([FromServices] AirportDB airportdb, [FromBody] BookingUpdateDTO dto)
+        {
+            var booking = await airportdb.Booking.GetBooking(dto.Id);
+            if (booking == null)
+            {
+                return NotFound(new { message = "Booking not found." });
+            }
+            if (dto.SeatNumber != null && dto.FlightId != null)
+            {
+                SeatDTO seat = await airportdb.Seat.GetSeat(dto.FlightId, (int)dto.SeatNumber);
+                if (seat == null)
+                {
+                    return NotFound(new { message = "Seat not found." });
+                }
+                if (seat.isOccupied)
+                {
+                    return BadRequest(new { message = "Seat is already occupied." });
+                }
+                await airportdb.Seat.UpdateSeat(dto.FlightId, (int)dto.SeatNumber, true);
+            }
+            await airportdb.Booking.UpdateBooking(dto);
+            return Ok(new { message = "Booking updated successfully." });
+        }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBooking([FromServices] AirportDB airportdb, int id)
@@ -58,13 +95,17 @@ namespace Server.Controllers
             {
                 return NotFound(new { message = "Booking not found." });
             }
-            int seatNumber = booking.SeatNumber;
-            SeatDTO seat = await airportdb.Seat.GetSeat(id, seatNumber);
-            if (seat == null)
-            {
-                return NotFound(new { message = "Seat not found." });
+
+            if (booking.SeatNumber != null) {
+                int seatNumber = (int)booking.SeatNumber;
+                SeatDTO seat = await airportdb.Seat.GetSeat(booking.FlightId, seatNumber);
+                if (seat == null)
+                {
+                    return NotFound(new { message = "Seat not found." });
+                }
+                await airportdb.Seat.UpdateSeat(booking.FlightId, seatNumber, false);
             }
-            await airportdb.Seat.UpdateSeat(id, seatNumber, false);
+         
             await airportdb.Booking.DeleteBooking(id);
             return Ok(new { message = "Booking deleted successfully." });
         }

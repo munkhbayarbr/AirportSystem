@@ -25,7 +25,7 @@ namespace Server.DA
                         Id: reader.GetInt32(0),
                         PassengerId: reader.GetInt32(1),
                         FlightId: reader.GetInt32(2),
-                        SeatNumber: reader.GetInt32(3),
+                        SeatNumber: reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
                         BookingDate: reader.GetDateTime(4)
                     );
                     bookings.Add(booking);
@@ -48,7 +48,7 @@ namespace Server.DA
                         Id: reader.GetInt32(0),
                         PassengerId: reader.GetInt32(1),
                         FlightId: reader.GetInt32(2),
-                        SeatNumber: reader.GetInt32(3),
+                        SeatNumber: reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
                         BookingDate: reader.GetDateTime(4)
                     );
                 }
@@ -64,7 +64,7 @@ namespace Server.DA
                     "INSERT INTO Booking (PassengerId, FlightId, SeatNumber, BookingDate) VALUES ($passengerId, $flightId, $seatNumber, $bookingDate)", connection);
                 command.Parameters.AddWithValue("$passengerId", booking.PassengerId);
                 command.Parameters.AddWithValue("$flightId", booking.FlightId);
-                command.Parameters.AddWithValue("$seatNumber", booking.SeatNumber);
+                command.Parameters.AddWithValue("$seatNumber", DBNull.Value);
                 command.Parameters.AddWithValue("$bookingDate", booking.BookingDate);
                 await command.ExecuteNonQueryAsync();
             }
@@ -110,7 +110,7 @@ namespace Server.DA
                         Id: reader.GetInt32(0),
                         PassengerId: reader.GetInt32(1),
                         FlightId: reader.GetInt32(2),
-                        SeatNumber: reader.GetInt32(3),
+                        SeatNumber: reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
                         BookingDate: reader.GetDateTime(4)
                     );
                     bookings.Add(booking);
@@ -118,6 +118,31 @@ namespace Server.DA
                 return bookings;
             }
         }
+        public async Task<List<BookingReadDTO>> GetBookingsByPassportId(int passportId)
+        {
+            using (var connection = new SqliteConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                var query = "SELECT * FROM Booking WHERE PassengerId IN (SELECT Id FROM Passenger WHERE PassportId = $passportId)";
+                var command = new SqliteCommand(query, connection);
+                command.Parameters.AddWithValue("$passportId", passportId);
+                var reader = await command.ExecuteReaderAsync();
+                var bookings = new List<BookingReadDTO>();
+                while (await reader.ReadAsync())
+                {
+                    var booking = new BookingReadDTO(
+                        Id: reader.GetInt32(0),
+                        PassengerId: reader.GetInt32(1),
+                        FlightId: reader.GetInt32(2),
+                        SeatNumber: reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
+                        BookingDate: reader.GetDateTime(4)
+                    );
+                    bookings.Add(booking);
+                }
+                return bookings;
+            }
+        }
+
         public async Task<List<BookingReadDTO>> GetBookingsByFlightId(int flightId)
         {
             using (var connection = new SqliteConnection(_connectionString))
@@ -134,7 +159,7 @@ namespace Server.DA
                         Id: reader.GetInt32(0),
                         PassengerId: reader.GetInt32(1),
                         FlightId: reader.GetInt32(2),
-                        SeatNumber: reader.GetInt32(3),
+                        SeatNumber: reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
                         BookingDate: reader.GetDateTime(4)
                     );
                     bookings.Add(booking);

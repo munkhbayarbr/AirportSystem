@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "Server.Controllers.BookingController",
+    "Method": "GetBookingsByPassengerId",
+    "RelativePath": "{PassportId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PassportId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Server.Controllers.BookingController",
     "Method": "GetBookings",
     "RelativePath": "Booking",
     "HttpMethod": "GET",
@@ -20,6 +36,22 @@
       {
         "Name": "dto",
         "Type": "Server.DTO.BookingCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Server.Controllers.BookingController",
+    "Method": "UpdateBooking",
+    "RelativePath": "Booking",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Server.DTO.BookingUpdateDTO",
         "IsRequired": true
       }
     ],
