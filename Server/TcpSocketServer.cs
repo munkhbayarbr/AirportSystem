@@ -1,15 +1,16 @@
-﻿using System.Net;
-using System.Net.Sockets;
-using System.Text;
+﻿using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
-using System.Net.Http;
-using Microsoft.AspNetCore.SignalR;
-using System.IO;
-using System;
+using Newtonsoft.Json.Linq;
 using Server.DA;
 using Server.DTO;
-using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Concurrent;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Server
 {
@@ -21,7 +22,7 @@ namespace Server
         private bool _isRunning;
         private FlightHub _flighthub;
         private Dictionary<TcpClient, string> _clientConnections = new Dictionary<TcpClient, string>();
-
+        private static readonly ConcurrentDictionary<string, object> SeatLocks = new();
 
         public TcpSocketServer(HttpClient httpClient, IHubContext<FlightHub> hubContext)
         {
@@ -136,25 +137,40 @@ namespace Server
                                         continue;
                                     }
 
-                                    var seatDTO = new SeatDTO(
-                                        seatBooking["FlightId"].Value<int>(),
-                                        seatBooking["SeatNumber"].Value<int>(),
-                                        seatBooking["isOccupied"].Value<bool>()
-                                    );
 
-                                    var jsonContent = new StringContent(
-                                        Newtonsoft.Json.JsonConvert.SerializeObject(seatDTO),
-                                        Encoding.UTF8,
-                                        "application/json"
-                                    );
+                                    int flightId = seatBooking["FlightId"].Value<int>();
+                                    int seatNumber = seatBooking["SeatNumber"].Value<int>();
 
-                                    var apiUrl = "http://localhost:5106/booking";
-                                    var response = await _httpClient.PutAsync(apiUrl, jsonContent);
-                                    var responseContent = await response.Content.ReadAsStringAsync();
-                                    var json = JObject.Parse(responseContent);
-                                    string message;
-                                    message = json["message"]?.ToString() ?? "No message found.";
-                                    await _flighthub.SeatAssigned(message, connectionId);
+                                    string seatLockKey = $"{flightId}_{seatNumber}";
+
+                                    var seatLock = SeatLocks.GetOrAdd(seatLockKey, new object());
+
+                                    lock (seatLock)
+                                    {
+                                        var seatDTO = new SeatDTO(
+                                            flightId,
+                                            seatNumber,
+                                            seatBooking["isOccupied"].Value<bool>()
+                                        );
+
+                                        var jsonContent = new StringContent(
+                                            Newtonsoft.Json.JsonConvert.SerializeObject(seatDTO),
+                                            Encoding.UTF8,
+                                            "application/json"
+                                        );
+
+                                        var apiUrl = "http://localhost:5106/booking";
+                                        var response = _httpClient.PutAsync(apiUrl, jsonContent).Result; 
+                                        var responseContent = response.Content.ReadAsStringAsync().Result;
+
+                                        var json = JObject.Parse(responseContent);
+                                        string message = json["message"]?.ToString() ?? "No message found.";
+
+                                        Task.Run(async () =>
+                                        {
+                                            await _flighthub.SeatAssigned(message, connectionId);
+                                        }).Wait();
+                                    }
 
                                 }
                             }

@@ -1,8 +1,9 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.SignalR.Client
 @using Server.DTO
+@implements IDisposable
 
-<h3>Flight Status Updates</h3>
+<h3>UlaanBator Airport  @currentTime.ToString("yyyy-MM-dd HH:mm:ss")</h3>
 
 @if (flights == null || !flights.Any())
 {
@@ -10,31 +11,60 @@
 }
 else
 {
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Flight Number</th>
-                <th>Departure</th>
-                <th>Departure Time</th>
-                <th>Arrival</th>
-                <th>Arrival Time</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var flight in flights)
-            {
-                <tr>
-                    <td>@flight.FlightNumber</td>
-                    <td>@flight.Departure</td>
-                    <td>@flight.DepartureTime.ToString("HH:mm")</td>
-                    <td>@flight.Arrival</td>
-                    <td>@flight.ArrivalTime.ToString("HH:mm")</td>
-                    <td>@flight.Status</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+
+    <div style="display: flex; height: 100vh;">
+        
+        <div style="flex: 1; padding: 10px; border-right: 1px solid #ccc;">
+            <h4>Arrival</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Flight Number</th>
+                        <th>Origin</th>
+                        <th>Arrival Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var flight in flights)
+                    {
+                        <tr>
+                            <td>@flight.FlightNumber</td>
+                            <td>@flight.Departure</td>
+                            <td>@flight.ArrivalTime.ToString("HH:mm")</td>
+                            <td>@flight.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div style="flex: 1; padding: 10px;">
+            <h4>Departure</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Flight Number</th>
+                        <th>Destination</th>
+                        <th>Departure Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var flight in flights)
+                    {
+                        <tr>
+                            <td>@flight.FlightNumber</td>
+                            <td>@flight.Arrival</td>
+                            <td>@flight.DepartureTime.ToString("HH:mm")</td>
+                            <td>@flight.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
 }
 
 @code {
@@ -85,5 +115,25 @@ else
         }
 
         flights = flightList;
+    }
+
+    
+    private DateTime currentTime = DateTime.Now;
+    private Timer? timer;
+
+    protected override void OnInitialized()
+    {
+        timer = new Timer(UpdateTime, null, 0, 1000);
+    }
+
+    private void UpdateTime(object? state)
+    {
+        currentTime = DateTime.Now;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        timer?.Dispose();
     }
 }
