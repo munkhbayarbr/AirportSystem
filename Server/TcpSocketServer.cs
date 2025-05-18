@@ -5,6 +5,7 @@ using Server.DA;
 using Server.DTO;
 using System;
 using System.Collections.Concurrent;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -20,7 +21,6 @@ namespace Server
         private readonly HttpClient _httpClient;
         private readonly IHubContext<FlightHub> _hubContext;
         private bool _isRunning;
-        private FlightHub _flighthub;
         private Dictionary<TcpClient, string> _clientConnections = new Dictionary<TcpClient, string>();
         private static readonly ConcurrentDictionary<string, object> SeatLocks = new();
 
@@ -126,7 +126,7 @@ namespace Server
                                     var response = await _httpClient.PutAsync(apiUrl, jsonContent);
                                     var responseContent = await response.Content.ReadAsStringAsync();
 
-                                    await _flighthub.UpdateFlightStatus(flightUpdateDTO);
+                                    await _hubContext.Clients.All.SendAsync("ReceiveFlightStatusUpdate", flightUpdateDTO);
                                 }
                                 else if (action == "bookSeat")
                                 {
@@ -144,6 +144,8 @@ namespace Server
                                     string seatLockKey = $"{flightId}_{seatNumber}";
 
                                     var seatLock = SeatLocks.GetOrAdd(seatLockKey, new object());
+
+                                    string message;
 
                                     lock (seatLock)
                                     {
@@ -166,13 +168,12 @@ namespace Server
                                         var responseContent = response.Content.ReadAsStringAsync().Result;
 
                                         var json = JObject.Parse(responseContent);
-                                        string message = json["message"]?.ToString() ?? "No message found.";
+                                        message = json["message"]?.ToString() ?? "No message found.";
 
-                                        Task.Run(async () =>
-                                        {
-                                            await _flighthub.SeatAssigned(message, connectionId);
-                                        }).Wait();
+                                        
                                     }
+                                    await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveSeatMessage", message);
+                                    SeatLocks.TryRemove(seatLockKey, out _);
 
                                 }
                             }
