@@ -85,8 +85,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "passengerId":2,
-  "flightId": 2,
+  "passengerId":1,
+  "flightId": 1,
   "bookingDate": "2025-06-02T09:00:00"
 }
 
@@ -106,7 +106,7 @@ Accept: application/json
 
 
 # Id-aar booking ustgah
-DELETE {{Server_HostAddress}}/booking/6
+DELETE {{Server_HostAddress}}/booking/2
 
 ###
 
@@ -120,11 +120,10 @@ Accept: application/json
   "passengerId":2,
   "flightId": 2,
   "bookingDate": "2025-06-02T09:00:00",
-  "seatNumber": 1
 }
 
 ###
 
 # Passport Id-aar booking avah
-GET {{Server_HostAddress}}/booking/getByPassportId/1
+GET {{Server_HostAddress}}/booking/getByPassportId/1001
 Accept: application/json

@@ -1,11 +1,6 @@
 # Visual Studio workspace
 .vs/
 
-# Build outputs
-bin/
-obj/
-
-# Other common ignores
-*.user
-*.suo
-*.log
+# Build output folders (anywhere in the tree)
+**/bin/
+**/obj/

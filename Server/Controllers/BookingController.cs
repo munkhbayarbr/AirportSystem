@@ -36,7 +36,7 @@ namespace Server.Controllers
         [HttpGet("getByPassportId/{PassportId}")]
         public async Task<IActionResult> GetBookingsByPassengerId([FromServices] AirportDB airportdb, int PassportId)
         {
-            var bookings = await airportdb.Booking.GetBookingsByPassengerId(PassportId);
+            var bookings = await airportdb.Booking.GetBookingsByPassportId(PassportId);
             if (bookings == null)
             {
                 return NotFound();
