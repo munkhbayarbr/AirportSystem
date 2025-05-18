@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.SignalR.Client
+@using Server.DTO
 
 <h3>Flight Status Updates</h3>
 
@@ -12,11 +13,11 @@ else
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Depart to</th>
-                <th>Airline</th>
-                <th>Flight</th>
-                <th>Gate</th>
-                <th>Time</th>
+                <th>Flight Number</th>
+                <th>Departure</th>
+                <th>Departure Time</th>
+                <th>Arrival</th>
+                <th>Arrival Time</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -24,22 +25,11 @@ else
             @foreach (var flight in flights)
             {
                 <tr>
-                    <td>@flight.Direction</td>
-                    <td>
-                        @if (flight.Airline != null && flight.Airline.Length > 0)
-                        {
-                            var base64 = Convert.ToBase64String(flight.Airline);
-                            var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                            <img src="@imgSrc" alt="Logo" style="height: 40px;" />
-                        }
-                        else
-                        {
-                            <span>No logo</span>
-                        }
-                    </td>
-                    <td>@flight.Number</td>
-                    <td>@flight.Gate</td>
-                    <td>@flight.DateTime.ToString("g")</td>
+                    <td>@flight.FlightNumber</td>
+                    <td>@flight.Departure</td>
+                    <td>@flight.DepartureTime.ToString("HH:mm")</td>
+                    <td>@flight.Arrival</td>
+                    <td>@flight.ArrivalTime.ToString("HH:mm")</td>
                     <td>@flight.Status</td>
                 </tr>
             }
@@ -48,7 +38,7 @@ else
 }
 
 @code {
-    private List<FlightInfo> flights = new();
+    private IEnumerable<FlightReadDTO> flights;
     HubConnection connection;
 
     protected override async Task OnInitializedAsync()
@@ -60,15 +50,15 @@ else
                 .WithAutomaticReconnect()
                 .Build();
 
-        connection.On<List<FlightInfo>>("ReceiveInfo", (flightsDoc) =>
+        connection.On<IEnumerable<FlightReadDTO>>("ReceiveAllFlights", (flightsDoc) =>
         {
             flights = flightsDoc;
             InvokeAsync(StateHasChanged);
         });
 
-        connection.On<string, string>("ReceiveFlightStatusUpdate", (flightId, newStatus) =>
+        connection.On<FlightReadDTO>("ReceiveFlightStatusUpdate", (flight) =>
         {
-            UpdateFlightStatus(flightId, newStatus);
+            UpdateFlightStatus(flight);
             InvokeAsync(StateHasChanged);
         });
 
@@ -77,17 +67,23 @@ else
 
         await connection.InvokeAsync("RequestFlightList");
 
-        
+
 
     }
 
-    private void UpdateFlightStatus(string flightId, string newStatus)
+    private void UpdateFlightStatus(FlightReadDTO flight)
     {
-        var flight = flights.FirstOrDefault(f => f.Number == flightId);
+        var flightList = flights.ToList();
 
-        if (flight != null)
+        for (int i = 0; i < flightList.Count; i++)
         {
-            flight.Status = newStatus;
+            if (flightList[i].FlightNumber == flight.FlightNumber)
+            {
+                flightList[i] = flight;
+                break;
+            }
         }
+
+        flights = flightList;
     }
 }

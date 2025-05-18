@@ -1,32 +1,43 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Server.DA;
+using Server.DTO;
+
 
 namespace Server
 {
     public class FlightHub : Hub
     {
-        public async Task UpdateFlightStatus(string flightId, string newStatus)
+
+        private readonly AirportDB _airportDb;
+
+        public FlightHub(AirportDB airportDb)
         {
-            await Clients.All.SendAsync("ReceiveFlightStatusUpdate", flightId, newStatus);
+            _airportDb = airportDb;
+        }
+        public async Task UpdateFlightStatus(FlightUpdateDTO flight)
+        {
+            await Clients.All.SendAsync("ReceiveFlightStatusUpdate", flight);
         }
 
-        public async Task SeatAssigned(string flightId, string message)
+        public async Task SeatAssigned(string message, string connectionId)
         {
-            Console.WriteLine("in hub");
-            await Clients.All.SendAsync("ReceiveMessage", flightId, message);
+            await Clients.Client(connectionId).SendAsync("ReceiveSeatMessage", message);
         }
 
         public async Task RequestFlightList()
         {
-            await Clients.Caller.SendAsync("ReceiveInfo", Data.FlightService.GetFlights());
+            IEnumerable<FlightReadDTO> flights = await _airportDb.Flight.GetAllFlights();
+
+            foreach (var flight in flights)
+            {
+                Console.WriteLine($"Flight ID: {flight.Id}, From: {flight.FlightNumber}");
+            }
+
+            await Clients.Caller.SendAsync("ReceiveAllFlights", flights);
         }
 
-        public async Task RequestMessage()
-        {
-            await Clients.Caller.SendAsync("ReceiveHello", "Hello from hub.");
-        }
+
 
     }
 
 }
-
-

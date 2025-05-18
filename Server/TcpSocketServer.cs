@@ -6,6 +6,10 @@ using System.Net.Http;
 using Microsoft.AspNetCore.SignalR;
 using System.IO;
 using System;
+using Server.DA;
+using Server.DTO;
+using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 namespace Server
 {
@@ -15,6 +19,9 @@ namespace Server
         private readonly HttpClient _httpClient;
         private readonly IHubContext<FlightHub> _hubContext;
         private bool _isRunning;
+        private FlightHub _flighthub;
+        private Dictionary<TcpClient, string> _clientConnections = new Dictionary<TcpClient, string>();
+
 
         public TcpSocketServer(HttpClient httpClient, IHubContext<FlightHub> hubContext)
         {
@@ -22,7 +29,7 @@ namespace Server
             _hubContext = hubContext;
             _isRunning = true;
 
-            
+
         }
 
         public async Task Start(string ipAddress, int port)
@@ -41,9 +48,11 @@ namespace Server
                 try
                 {
                     var client = _listener.AcceptTcpClient();
+                    string connectionId = Guid.NewGuid().ToString();
+                    _clientConnections.Add(client, connectionId);
                     Console.WriteLine("New client connected");
 
-                    var clientThread = new Thread(() => HandleClient(client));
+                    var clientThread = new Thread(() => HandleClient(client, connectionId));
                     clientThread.Start();
                 }
                 catch (Exception ex)
@@ -56,62 +65,110 @@ namespace Server
 
 
 
-        private async void HandleClient(TcpClient client)
+        private async void HandleClient(TcpClient client, string connectionId)
         {
             using var stream = client.GetStream();
             var buffer = new byte[4096];
+            StringBuilder messageBuilder = new StringBuilder();
 
             try
             {
                 while (client.Connected)
                 {
-                    int type = stream.ReadByte();
-                    if (type == -1)
-                        break;
-
-                    if (type == 1)
+                    int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                    if (bytesRead > 0)
                     {
-                        int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
-                        int numberOfInts = bytesRead / sizeof(int);
-                        int[] receivedNumbers = new int[numberOfInts];
+                        messageBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesRead));
 
-                        for (int i = 0; i < numberOfInts; i++)
+                        if (messageBuilder.ToString().EndsWith("}"))
                         {
-                            receivedNumbers[i] = BitConverter.ToInt32(buffer, i * sizeof(int));
+                            string jsonString = messageBuilder.ToString();
+                            Console.WriteLine($"Received JSON: {jsonString}");
+                            if (string.IsNullOrEmpty(jsonString))
+                            {
+                                Console.WriteLine("Received empty or null JSON string.");
+                                continue;
+                            }
+
+                            try
+                            {
+                                JObject obj = JObject.Parse(jsonString);
+                                string action = obj["action"]?.ToString();
+
+                                if (action == "updateFlight")
+                                {
+                                    var flightData = obj["data"];
+                                    if (flightData == null)
+                                    {
+                                        Console.WriteLine("Flight data is null.");
+                                        continue;
+                                    }
+
+                                    var flightUpdateDTO = new FlightUpdateDTO(
+                                        flightData["Id"].Value<int>(),
+                                        flightData["FlightNumber"].Value<string>(),
+                                        flightData["Status"].Value<string>(),
+                                        flightData["Departure"].Value<string>(),
+                                        flightData["Arrival"].Value<string>(),
+                                        flightData["DepartureTime"].Value<DateTime>(),
+                                        flightData["ArrivalTime"].Value<DateTime>(),
+                                        flightData["SeatCount"].Value<int>()
+                                    );
+
+                                    var jsonContent = new StringContent(
+                                        Newtonsoft.Json.JsonConvert.SerializeObject(flightUpdateDTO),
+                                        Encoding.UTF8,
+                                        "application/json"
+                                    );
+
+                                    var apiUrl = "http://localhost:5106/flight";
+                                    var response = await _httpClient.PutAsync(apiUrl, jsonContent);
+                                    var responseContent = await response.Content.ReadAsStringAsync();
+
+                                    await _flighthub.UpdateFlightStatus(flightUpdateDTO);
+                                }
+                                else if (action == "bookSeat")
+                                {
+                                    var seatBooking = obj["data"];
+                                    if (seatBooking == null)
+                                    {
+                                        Console.WriteLine("seatBooking is null.");
+                                        continue;
+                                    }
+
+                                    var seatDTO = new SeatDTO(
+                                        seatBooking["FlightId"].Value<int>(),
+                                        seatBooking["SeatNumber"].Value<int>(),
+                                        seatBooking["isOccupied"].Value<bool>()
+                                    );
+
+                                    var jsonContent = new StringContent(
+                                        Newtonsoft.Json.JsonConvert.SerializeObject(seatDTO),
+                                        Encoding.UTF8,
+                                        "application/json"
+                                    );
+
+                                    var apiUrl = "http://localhost:5106/booking";
+                                    var response = await _httpClient.PutAsync(apiUrl, jsonContent);
+                                    var responseContent = await response.Content.ReadAsStringAsync();
+                                    var json = JObject.Parse(responseContent);
+                                    string message;
+                                    message = json["message"]?.ToString() ?? "No message found.";
+                                    await _flighthub.SeatAssigned(message, connectionId);
+
+                                }
+                            }
+                            catch (JsonReaderException jex)
+                            {
+                                Console.WriteLine($"JSON parsing error: {jex.Message}");
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Unexpected error: {ex.Message}");
+                            }
+
+                            messageBuilder.Clear();
                         }
-
-                        Console.WriteLine("Received Integers:");
-                        foreach (var num in receivedNumbers)
-                        {
-                            Console.WriteLine(num);
-                        }
-
-                        string message = $"Row: {receivedNumbers[0]} Column: {receivedNumbers[1]} taken.";
-                        await _hubContext.Clients.All.SendAsync("ReceiveMessage", "123", message);
-                    }
-                    else if (type == 2)
-                    {
-                        byte[] lengthBuffer = new byte[4];
-                        await stream.ReadAsync(lengthBuffer, 0, 4);
-                        int totalStringBytes = BitConverter.ToInt32(lengthBuffer, 0);
-
-                        byte[] stringDataBuffer = new byte[totalStringBytes];
-                        await stream.ReadAsync(stringDataBuffer, 0, totalStringBytes);
-
-                        string allStrings = Encoding.UTF8.GetString(stringDataBuffer);
-                        string[] strings = allStrings.Split('|');
-
-                        Console.WriteLine("Received Strings:");
-                        foreach (var str in strings)
-                        {
-                            Console.WriteLine(str);
-                        }
-
-                        await _hubContext.Clients.All.SendAsync("ReceiveFlightStatusUpdate", strings[0], strings[1]);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Unknown message type received: {type}");
                     }
                 }
             }
@@ -132,7 +189,8 @@ namespace Server
 
 
 
-        
+
+
 
         public void Stop()
         {
