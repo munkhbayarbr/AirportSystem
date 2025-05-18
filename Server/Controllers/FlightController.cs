@@ -14,6 +14,12 @@ namespace Server.Controllers
         {
             _logger = logger;
         }
+        /// <summary>
+        /// Get a flight by id.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFlightById([FromServices] AirportDB airportdb, int id)
@@ -26,6 +32,11 @@ namespace Server.Controllers
             return Ok(flight);
         }
 
+        /// <summary>
+        /// Get all flights.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <returns></returns>
         [HttpGet("")]
         public async Task<IActionResult> GetFlights([FromServices] AirportDB airportdb)
         {
@@ -33,6 +44,12 @@ namespace Server.Controllers
             return Ok(flights);
         }
 
+        /// <summary>
+        /// Add a flight.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddFlight([FromServices] AirportDB airportdb, [FromBody] FlightCreateDTO dto)
         {
@@ -45,6 +62,12 @@ namespace Server.Controllers
 
             return Ok(new { message = "Flight added successfully." });
         }
+        /// <summary>
+        /// Delete a flight by id.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFlight([FromServices] AirportDB airportdb, int id)
@@ -59,6 +82,12 @@ namespace Server.Controllers
             return Ok(new { message = "Flight deleted successfully." });
         }
 
+        /// <summary>
+        /// Update a flight.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateFlight([FromServices] AirportDB airportdb, [FromBody] FlightUpdateDTO dto)
         {

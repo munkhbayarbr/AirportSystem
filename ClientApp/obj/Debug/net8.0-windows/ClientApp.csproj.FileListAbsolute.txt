@@ -483,3 +483,4 @@ C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ref
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.pdb
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.genruntimeconfig.cache
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ref\ClientApp.dll
+C:\Users\Tuvshuu\Desktop\windows\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.SeatSelectionForm.resources

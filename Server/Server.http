@@ -99,7 +99,7 @@ Accept: application/json
 ###
 
 # ID-aar booking avah
-GET {{Server_HostAddress}}/booking/5
+GET {{Server_HostAddress}}/booking/7
 Accept: application/json
 
 ###

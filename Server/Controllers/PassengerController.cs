@@ -15,6 +15,12 @@ namespace Server.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Get a passenger by id.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPassengerById([FromServices] AirportDB airportdb, int id)
         {
@@ -26,7 +32,11 @@ namespace Server.Controllers
 
             return Ok(passenger);
         }
-
+        /// <summary>
+        /// Get all passengers.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <returns></returns>
         [HttpGet("")]
         public async Task<IActionResult> GetPassengers([FromServices] AirportDB airportdb)
         {

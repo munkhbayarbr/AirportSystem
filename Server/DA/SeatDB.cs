@@ -11,6 +11,13 @@ namespace Server.DA
             _connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Add a seat
+        /// </summary>
+        /// <param name="flightId"></param>
+        /// <param name="seatNumber"></param>
+        /// <param name="isOccupied"></param>
+        /// <returns></returns>
         public async Task AddSeat(int flightId, int seatNumber, bool isOccupied)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -29,6 +36,13 @@ namespace Server.DA
             await command.ExecuteNonQueryAsync();
         }
 
+        /// <summary>
+        /// Update a seat
+        /// </summary>
+        /// <param name="flightId"></param>
+        /// <param name="seatNumber"></param>
+        /// <param name="isOccupied"></param>
+        /// <returns></returns>
         public async Task UpdateSeat(int flightId, int seatNumber, bool isOccupied)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -48,6 +62,12 @@ namespace Server.DA
             await command.ExecuteNonQueryAsync();
         }
 
+        /// <summary>
+        /// Delete a seat
+        /// </summary>
+        /// <param name="flightId"></param>
+        /// <param name="seatNumber"></param>
+        /// <returns></returns>
         public async Task DeleteSeat(int flightId, int seatNumber)
         {
             using var connection = new SqliteConnection(_connectionString);

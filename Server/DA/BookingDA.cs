@@ -5,11 +5,24 @@ namespace Server.DA
 {
     public class BookingDA
     {
+        /// <summary>
+        /// Connection string for the database.
+        /// </summary>
         private readonly string _connectionString;
+
+        /// <summary>
+        /// Constructor for the BookingDA class.
+        /// </summary>
+        /// <param name="connectionString"></param>
         public BookingDA(string connectionString)
         {
             this._connectionString = connectionString;
         }
+
+        /// <summary>
+        /// Get all bookings
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<BookingReadDTO>> GetBookings()
         {
             using (var connection = new SqliteConnection(_connectionString))
@@ -33,6 +46,12 @@ namespace Server.DA
                 return bookings;
             }
         }
+
+        /// <summary>
+        /// Get a booking by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<BookingReadDTO> GetBooking(int id)
         {
             using (var connection = new SqliteConnection(_connectionString))
@@ -55,6 +74,11 @@ namespace Server.DA
                 return null;
             }
         }
+        /// <summary>
+        /// Add a new booking
+        /// </summary>
+        /// <param name="booking"></param>
+        /// <returns></returns>
         public async Task AddBooking(BookingCreateDTO booking)
         {
             using (var connection = new SqliteConnection(_connectionString))
@@ -69,6 +93,12 @@ namespace Server.DA
                 await command.ExecuteNonQueryAsync();
             }
         }
+
+        /// <summary>
+        /// Update an existing booking
+        /// </summary>
+        /// <param name="booking"></param>
+        /// <returns></returns>
         public async Task UpdateBooking(BookingUpdateDTO booking)
         {
             using (var connection = new SqliteConnection(_connectionString))
@@ -84,6 +114,11 @@ namespace Server.DA
                 await command.ExecuteNonQueryAsync();
             }
         }
+        /// <summary>
+        /// Delete a booking
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task DeleteBooking(int id)
         {
             using (var connection = new SqliteConnection(_connectionString))
@@ -94,6 +129,12 @@ namespace Server.DA
                 await command.ExecuteNonQueryAsync();
             }
         }
+
+        /// <summary>
+        /// Get bookings by passenger ID
+        /// </summary>
+        /// <param name="passengerId"></param>
+        /// <returns></returns>
         public async Task<List<BookingReadDTO>> GetBookingsByPassengerId(int passengerId)
         {
             using (var connection = new SqliteConnection(_connectionString))
@@ -118,6 +159,12 @@ namespace Server.DA
                 return bookings;
             }
         }
+
+        /// <summary>
+        /// Get bookings by passport ID
+        /// </summary>
+        /// <param name="passportId"></param>
+        /// <returns></returns>
         public async Task<List<BookingReadDTO>> GetBookingsByPassportId(int passportId)
         {
             using (var connection = new SqliteConnection(_connectionString))
@@ -143,6 +190,11 @@ namespace Server.DA
             }
         }
 
+        /// <summary>
+        /// Get bookings by flight ID
+        /// </summary>
+        /// <param name="flightId"></param>
+        /// <returns></returns>
         public async Task<List<BookingReadDTO>> GetBookingsByFlightId(int flightId)
         {
             using (var connection = new SqliteConnection(_connectionString))

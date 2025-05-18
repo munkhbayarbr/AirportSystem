@@ -7,11 +7,26 @@ namespace Server.DA
     {
         private readonly string _connectionString;
 
+        /// <summary>
+        /// FLight Data Access class constructor
+        /// </summary>
+        /// <param name="connectionString"></param>
         public FlightDA(string connectionString)
         {
             _connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Add a flight
+        /// </summary>
+        /// <param name="flightNumber"></param>
+        /// <param name="status"></param>
+        /// <param name="departure"></param>
+        /// <param name="arrival"></param>
+        /// <param name="departureTime"></param>
+        /// <param name="arrivalTime"></param>
+        /// <param name="seatCount"></param>
+        /// <returns></returns>
         public async Task<FlightReadDTO> AddFlight(string flightNumber, string status, string departure, string arrival, DateTime departureTime, DateTime arrivalTime, int seatCount)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -49,6 +64,18 @@ namespace Server.DA
             );
         }
 
+        /// <summary>
+        /// Update a flight
+        /// </summary>
+        /// <param name="flightId"></param>
+        /// <param name="flightNumber"></param>
+        /// <param name="status"></param>
+        /// <param name="departure"></param>
+        /// <param name="arrival"></param>
+        /// <param name="departureTime"></param>
+        /// <param name="arrivalTime"></param>
+        /// <param name="seatCount"></param>
+        /// <returns></returns>
         public async Task UpdateFlight(int flightId, string flightNumber, string status, string departure, string arrival, DateTime departureTime, DateTime arrivalTime, int seatCount)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -79,6 +106,11 @@ namespace Server.DA
             await command.ExecuteNonQueryAsync();
         }
 
+        /// <summary>
+        /// Delete a flight
+        /// </summary>
+        /// <param name="flightId"></param>
+        /// <returns></returns>
         public async Task DeleteFlight(int flightId)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -95,6 +127,10 @@ namespace Server.DA
             await command.ExecuteNonQueryAsync();
         }
 
+        /// <summary>
+        /// Get all flights
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<FlightReadDTO>> GetAllFlights()
         {
             var flights = new List<FlightReadDTO>();
@@ -127,6 +163,11 @@ namespace Server.DA
             return flights;
         }
 
+        /// <summary>
+        /// Get a flight by ID
+        /// </summary>
+        /// <param name="flightId"></param>
+        /// <returns></returns>
         public async Task<FlightReadDTO?> GetFlight(int flightId)
         {
             using var connection = new SqliteConnection(_connectionString);

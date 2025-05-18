@@ -15,6 +15,13 @@ namespace Server.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Get a booking by id.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBookingById([FromServices] AirportDB airportdb, int id)
         {
@@ -26,6 +33,11 @@ namespace Server.Controllers
             return Ok(booking);
         }
 
+        /// <summary>
+        /// Get all bookings.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <returns></returns>
         [HttpGet("")]
         public async Task<IActionResult> GetBookings([FromServices] AirportDB airportdb)
         {
@@ -33,6 +45,12 @@ namespace Server.Controllers
             return Ok(bookings);
         }
 
+        /// <summary>
+        /// Get bookings by passenger id.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="PassportId"></param>
+        /// <returns></returns>
         [HttpGet("getByPassportId/{PassportId}")]
         public async Task<IActionResult> GetBookingsByPassengerId([FromServices] AirportDB airportdb, int PassportId)
         {
@@ -44,6 +62,12 @@ namespace Server.Controllers
             return Ok(bookings);
         }
 
+        /// <summary>
+        /// Add a new booking.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddBooking([FromServices] AirportDB airportdb, [FromBody] BookingCreateDTO dto)
         {
@@ -61,6 +85,12 @@ namespace Server.Controllers
             return Ok(new { message = "Booking added successfully." });
         }
 
+        /// <summary>
+        /// Update an existing booking.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateBooking([FromServices] AirportDB airportdb, [FromBody] BookingUpdateDTO dto)
         {
@@ -86,7 +116,12 @@ namespace Server.Controllers
             return Ok(new { message = "Booking updated successfully." });
         }
 
-
+        /// <summary>
+        /// Delete a booking by id.
+        /// </summary>
+        /// <param name="airportdb"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBooking([FromServices] AirportDB airportdb, int id)
         {

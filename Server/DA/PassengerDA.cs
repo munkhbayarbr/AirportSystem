@@ -12,6 +12,11 @@ namespace Server.DA
             _connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Add a passenger
+        /// </summary>
+        /// <param name="passenger"></param>
+        /// <returns></returns>
         public async Task AddPassenger(PassengerCreateDTO passenger)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -32,6 +37,11 @@ namespace Server.DA
             await command.ExecuteNonQueryAsync();
         }
 
+        /// <summary>
+        /// Update a passenger
+        /// </summary>
+        /// <param name="passenger"></param>
+        /// <returns></returns>
         public async Task UpdatePassenger(PassengerUpdateDTO passenger)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -53,6 +63,11 @@ namespace Server.DA
             await command.ExecuteNonQueryAsync();
         }
 
+        /// <summary>
+        /// Delete a passenger
+        /// </summary>
+        /// <param name="passengerId"></param>
+        /// <returns></returns>
         public async Task DeletePassenger(int passengerId)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -69,6 +84,11 @@ namespace Server.DA
             await command.ExecuteNonQueryAsync();
         }
 
+        /// <summary>
+        /// Get a passenger by ID
+        /// </summary>
+        /// <param name="passengerId"></param>
+        /// <returns></returns>
         public async Task<PassengerReadDTO?> GetPassenger(int passengerId)
         {
             PassengerReadDTO? passenger = null;
@@ -100,6 +120,10 @@ namespace Server.DA
             return passenger;
         }
 
+        /// <summary>
+        /// Get all passengers
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<PassengerReadDTO>> GetAllPassengers()
         {
             var passengers = new List<PassengerReadDTO>();
