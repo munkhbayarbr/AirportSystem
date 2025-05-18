@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\Dashboard.csproj": {}
+    "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Dashboard.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\Dashboard.csproj": {
+    "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Dashboard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\Dashboard.csproj",
+        "projectUniqueName": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Dashboard.csproj",
         "projectName": "Dashboard",
-        "projectPath": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\Dashboard.csproj",
-        "packagesPath": "C:\\Users\\Tuvshuu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tuvshuu\\Desktop\\windows\\AirportSystem\\Dashboard\\obj\\",
+        "projectPath": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Dashboard.csproj",
+        "packagesPath": "C:\\Users\\sanaa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tuvshuu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sanaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,7 +44,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -83,13 +82,13 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.12, )",
+              "version": "[8.0.16, )",
               "autoReferenced": true
             },
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.1, )",
+              "version": "[9.0.5, )",
               "autoReferenced": true
             }
           },
@@ -107,7 +106,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[8.0.12, 8.0.12]"
+              "version": "[8.0.16, 8.0.16]"
             }
           ],
           "frameworkReferences": {
@@ -115,7 +114,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
