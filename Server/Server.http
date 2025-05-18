@@ -116,7 +116,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-   "id": 6,
+  "id": 6,
   "passengerId":2,
   "flightId": 2,
   "bookingDate": "2025-06-02T09:00:00",

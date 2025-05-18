@@ -147,14 +147,16 @@ namespace Server
 
                                     lock (seatLock)
                                     {
-                                        var seatDTO = new SeatDTO(
-                                            flightId,
-                                            seatNumber,
-                                            seatBooking["isOccupied"].Value<bool>()
+                                        var bookUpdateDTO = new BookingUpdateDTO(
+                                            seatBooking["Id"].Value<int>(),
+                                            seatBooking["PassengerId"].Value<int>(),
+                                            seatBooking["FlightId"].Value<int>(),
+                                            seatBooking["SeatNumber"].Value<int>(),
+                                            seatBooking["BookingDate"].Value<DateTime>()
                                         );
 
                                         var jsonContent = new StringContent(
-                                            Newtonsoft.Json.JsonConvert.SerializeObject(seatDTO),
+                                            Newtonsoft.Json.JsonConvert.SerializeObject(bookUpdateDTO),
                                             Encoding.UTF8,
                                             "application/json"
                                         );
