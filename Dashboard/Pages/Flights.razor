@@ -12,7 +12,7 @@
 else
 {
 
-    <div style="display: flex; height: 100vh; background-color: #2247bf; color: white;">
+    <div style="display: flex; min-height: 100vh; background-color: #2247bf; color: white;">
 
         <div style="flex: 1; padding: 10px; border-right: 1px solid #ccc;">
             <h4>Arrival</h4>
@@ -72,10 +72,14 @@ else
 @code {
     private IEnumerable<FlightReadDTO> flights;
     HubConnection connection;
+    private DateTime currentTime = DateTime.Now;
+    private Timer? timer;
+
 
     protected override async Task OnInitializedAsync()
     {
 
+        timer = new Timer(UpdateTime, null, 0, 1000);
 
         connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:7132/flighthub")
@@ -133,13 +137,8 @@ else
 
 
     
-    private DateTime currentTime = DateTime.Now;
-    private Timer? timer;
-
-    protected override void OnInitialized()
-    {
-        timer = new Timer(UpdateTime, null, 0, 1000);
-    }
+    
+    
 
     private void UpdateTime(object? state)
     {
