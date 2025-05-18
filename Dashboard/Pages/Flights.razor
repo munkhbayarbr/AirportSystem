@@ -2,8 +2,8 @@
 @using Microsoft.AspNetCore.SignalR.Client
 @using Server.DTO
 @implements IDisposable
+<h1 style="background-color: #2247bf; color: white;">UlaanBator Airport  <span style="float:right;">@currentTime.ToString("yyyy-MM-dd HH:mm:ss")</span></h1>
 
-<h3>UlaanBator Airport  @currentTime.ToString("yyyy-MM-dd HH:mm:ss")</h3>
 
 @if (flights == null || !flights.Any())
 {
@@ -12,11 +12,11 @@
 else
 {
 
-    <div style="display: flex; height: 100vh;">
-        
+    <div style="display: flex; height: 100vh; background-color: #2247bf; color: white;">
+
         <div style="flex: 1; padding: 10px; border-right: 1px solid #ccc;">
             <h4>Arrival</h4>
-            <table class="table table-bordered">
+            <table class="table table-bordered" style="color: white;">
                 <thead>
                     <tr>
                         <th>Flight Number</th>
@@ -32,7 +32,7 @@ else
                             <td>@flight.FlightNumber</td>
                             <td>@flight.Departure</td>
                             <td>@flight.ArrivalTime.ToString("HH:mm")</td>
-                            <td>@flight.Status</td>
+                            <td style="@(GetStatusStyle(flight.Status))">@flight.Status</td>
                         </tr>
                     }
                 </tbody>
@@ -41,7 +41,7 @@ else
 
         <div style="flex: 1; padding: 10px;">
             <h4>Departure</h4>
-            <table class="table table-bordered">
+            <table class="table table-bordered" style="color: white;">
                 <thead>
                     <tr>
                         <th>Flight Number</th>
@@ -57,13 +57,15 @@ else
                             <td>@flight.FlightNumber</td>
                             <td>@flight.Arrival</td>
                             <td>@flight.DepartureTime.ToString("HH:mm")</td>
-                            <td>@flight.Status</td>
+                            <td style="@(GetStatusStyle(flight.Status))">@flight.Status</td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
+
+
     
 }
 
@@ -116,6 +118,19 @@ else
 
         flights = flightList;
     }
+
+    private string GetStatusStyle(string status)
+    {
+        return status.ToLower() switch
+        {
+            "cancelled" => "color: white; background-color: red;",
+            "delayed" => "color: white; background-color: orange;",
+            "on time" => "color: white; background-color: green;",
+            "flying" => "color: white; background-color: #2247bf;",
+            _ => "color: black; background-color: lightgray;"
+        };
+    }
+
 
     
     private DateTime currentTime = DateTime.Now;
