@@ -77,6 +77,8 @@ else
     
 }
 
+@inject HttpClient Http
+
 @code {
     private IEnumerable<FlightReadDTO> flights;
     HubConnection connection;
@@ -89,16 +91,42 @@ else
 
         timer = new Timer(UpdateTime, null, 0, 1000);
 
+
+        flights = await Http.GetFromJsonAsync<IEnumerable<FlightReadDTO>>("http://localhost:5106/flight");
+
         connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:7132/flighthub")
                 .WithAutomaticReconnect()
                 .Build();
 
-        connection.On<IEnumerable<FlightReadDTO>>("ReceiveAllFlights", (flightsDoc) =>
-        {
-            flights = flightsDoc;
-            InvokeAsync(StateHasChanged);
-        });
+        // connection.On<IEnumerable<FlightReadDTO>>("ReceiveAllFlights", (flightsDoc) =>
+        // {
+        //     flights = flightsDoc;
+        //     InvokeAsync(StateHasChanged);
+        // });
+
+        // connection.On<FlightReadDTO>("ReceiveFlightStatusUpdate", (flight) =>
+        // {
+        //     UpdateFlightStatus(flight);
+        //     InvokeAsync(StateHasChanged);
+        // });
+
+        // await connection.StartAsync();
+
+
+        // await connection.InvokeAsync("RequestFlightList");
+
+        await StartSignalRConnection();
+
+    }
+
+
+    private async Task StartSignalRConnection()
+    {
+        connection = new HubConnectionBuilder()
+            .WithUrl("https://localhost:7132/flighthub")
+            .WithAutomaticReconnect()
+            .Build();
 
         connection.On<FlightReadDTO>("ReceiveFlightStatusUpdate", (flight) =>
         {
@@ -107,13 +135,9 @@ else
         });
 
         await connection.StartAsync();
-
-
-        await connection.InvokeAsync("RequestFlightList");
-
-
-
+        //await connection.InvokeAsync("RequestFlightList");
     }
+
 
     private void UpdateFlightStatus(FlightReadDTO flight)
     {

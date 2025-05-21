@@ -15,14 +15,20 @@ using System.Text;
 
 namespace Server
 {
+
+    /// <summary>
+    /// Socker server
+    /// </summary>
     public class TcpSocketServer
     {
         private TcpListener _listener;
         private readonly HttpClient _httpClient;
         private readonly IHubContext<FlightHub> _hubContext;
         private bool _isRunning;
-        private Dictionary<TcpClient, string> _clientConnections = new Dictionary<TcpClient, string>();
-        private static readonly ConcurrentDictionary<string, object> SeatLocks = new();
+        //thread safety lock өөрөө зохицуулдаг учраас
+        private readonly ConcurrentDictionary<TcpClient, string> _clientConnections = new();
+        private static readonly ConcurrentDictionary<string, SemaphoreSlim> SeatLocks = new();
+
 
         public TcpSocketServer(HttpClient httpClient, IHubContext<FlightHub> hubContext)
         {
@@ -42,6 +48,12 @@ namespace Server
             Task.Run(() => ListenForClients());
         }
 
+
+        /// <summary>
+        /// Client холбогдохыг хүлээнэ. Infinite loop
+        /// Client холбогдсон үед unique string id үүсгээд clientconnection dictionary -д нэмнэ.
+        /// Дараа client бүрд тусгай task үүсгэн ажиллуулна.
+        /// </summary>
         private void ListenForClients()
         {
             while (_isRunning)
@@ -50,11 +62,13 @@ namespace Server
                 {
                     var client = _listener.AcceptTcpClient();
                     string connectionId = Guid.NewGuid().ToString();
-                    _clientConnections.Add(client, connectionId);
+                    _clientConnections.TryAdd(client, connectionId);
                     Console.WriteLine("New client connected");
 
-                    var clientThread = new Thread(() => HandleClient(client, connectionId));
-                    clientThread.Start();
+                    //var clientThread = new Thread(() => HandleClient(client, connectionId));
+                    //clientThread.Start();
+                    _ = Task.Run(() => HandleClient(client, connectionId));
+
                 }
                 catch (Exception ex)
                 {
@@ -64,9 +78,25 @@ namespace Server
         }
 
 
+        /// <summary>
+        /// TCP клиентээс ирсэн өгөгдлийг асинхрон аргаар хүлээн авч боловсруулдаг.
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Энэ функц нь өгөгдлийг клиентээс тасралтгүй уншиж, JSON форматаар дууссан эсэхийг шалгаж, 
+        /// дараах хоёр төрлийн үйлдлийг боловсруулна:
+        /// <list type="bullet">
+        ///   <item><description><c>updateFlight</c> — Нислэгийн мэдээллийг шинэчилж API руу PUT хүсэлт илгээнэ.</description></item>
+        ///   <item><description><c>bookSeat</c> — Суудал захиалах хүсэлт хүлээн авч API руу PUT илгээх ба түгжигч <c>SemaphoreSlim</c> ашиглана.</description></item>
+        /// </list>
+        /// Мөн <see cref="_hubContext"/> ашиглан SignalR-аар бүх клиентэд шинэчлэлийг мэдэгдэнэ.
+        /// Хэрэв өгөгдөл JSON биш эсвэл алдаатай байвал бичилт <c>JsonReaderException</c>-оор баригдаж, алдааны мэдээллийг бичнэ.
+        /// <para/>
+        /// <param name="client"></param>
+        /// <param name="connectionId"></param>
+        /// <returns></returns>
 
-
-        private async void HandleClient(TcpClient client, string connectionId)
+        private async Task HandleClient(TcpClient client, string connectionId)
         {
             using var stream = client.GetStream();
             var buffer = new byte[4096];
@@ -84,7 +114,7 @@ namespace Server
                         if (messageBuilder.ToString().EndsWith("}"))
                         {
                             string jsonString = messageBuilder.ToString();
-                            Console.WriteLine($"Received JSON: {jsonString}");
+                            //Console.WriteLine($"Received JSON: {jsonString}");
                             if (string.IsNullOrEmpty(jsonString))
                             {
                                 Console.WriteLine("Received empty or null JSON string.");
@@ -98,6 +128,7 @@ namespace Server
 
                                 if (action == "updateFlight")
                                 {
+                                    //нислэг шинэчлэх үед 
                                     var flightData = obj["data"];
                                     if (flightData == null)
                                     {
@@ -130,6 +161,8 @@ namespace Server
                                 }
                                 else if (action == "bookSeat")
                                 {
+
+                                    //суудал захиалах хүсэлт ирсэн үед
                                     var seatBooking = obj["data"];
                                     if (seatBooking == null)
                                     {
@@ -143,11 +176,12 @@ namespace Server
 
                                     string seatLockKey = $"{flightId}_{seatNumber}";
 
-                                    var seatLock = SeatLocks.GetOrAdd(seatLockKey, new object());
+                                    var seatLock = SeatLocks.GetOrAdd(seatLockKey, _ => new SemaphoreSlim(1, 1));
 
                                     string message;
 
-                                    lock (seatLock)
+                                    await seatLock.WaitAsync();
+                                    try
                                     {
                                         var bookUpdateDTO = new BookingUpdateDTO(
                                             seatBooking["Id"].Value<int>(),
@@ -164,17 +198,19 @@ namespace Server
                                         );
 
                                         var apiUrl = "http://localhost:5106/booking";
-                                        var response = _httpClient.PutAsync(apiUrl, jsonContent).Result; 
-                                        var responseContent = response.Content.ReadAsStringAsync().Result;
+                                        var response = await _httpClient.PutAsync(apiUrl, jsonContent);
+                                        var responseContent = await response.Content.ReadAsStringAsync();
 
                                         var json = JObject.Parse(responseContent);
                                         message = json["message"]?.ToString() ?? "No message found.";
-
-                                        
+                                    }
+                                    finally
+                                    {
+                                        seatLock.Release();
                                     }
                                     await _hubContext.Clients.All.SendAsync("ReceiveSeatUpdate", flightId, seatNumber);
                                     await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveSeatMessage", message);
-                                    SeatLocks.TryRemove(seatLockKey, out _);
+                                    
 
                                 }
                             }
