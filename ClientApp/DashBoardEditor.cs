@@ -129,7 +129,7 @@ namespace ClientApp
             foreach (var flight in flights)
             {
                 
-                if (flight.Arrival == "Ulaanbator")
+                if (flight.Arrival == "Ulaanbaatar")
                 {
                     var dgv = arrivalsDataGridView;
                     dgv.Rows.Add(
@@ -158,7 +158,7 @@ namespace ClientApp
         private void UpdateFlight(FlightReadDTO flight)
         {
 
-            var dgv = flight.Arrival == "Ulaanbator" ? arrivalsDataGridView : departuresDataGridView;
+            var dgv = flight.Arrival == "Ulaanbaatar" ? arrivalsDataGridView : departuresDataGridView;
             foreach (DataGridViewRow row in dgv.Rows)
             {
                 if (row.Cells["FlightNumber"].Value?.ToString() == flight.FlightNumber)

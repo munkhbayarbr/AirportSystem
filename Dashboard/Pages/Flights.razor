@@ -28,12 +28,16 @@ else
                 <tbody>
                     @foreach (var flight in flights)
                     {
-                        <tr>
-                            <td>@flight.FlightNumber</td>
-                            <td>@flight.Departure</td>
-                            <td>@flight.ArrivalTime.ToString("HH:mm")</td>
-                            <td style="@(GetStatusStyle(flight.Status))">@flight.Status</td>
-                        </tr>
+                        if (flight.Arrival == "Ulaanbaatar")
+                        {
+                            <tr>
+                                <td>@flight.FlightNumber</td>
+                                <td>@flight.Departure</td>
+                                <td>@flight.ArrivalTime.ToString("HH:mm")</td>
+                                <td style="@(GetStatusStyle(flight.Status))">@flight.Status</td>
+                            </tr>
+                        }
+                        
                     }
                 </tbody>
             </table>
@@ -53,12 +57,16 @@ else
                 <tbody>
                     @foreach (var flight in flights)
                     {
-                        <tr>
-                            <td>@flight.FlightNumber</td>
-                            <td>@flight.Arrival</td>
-                            <td>@flight.DepartureTime.ToString("HH:mm")</td>
-                            <td style="@(GetStatusStyle(flight.Status))">@flight.Status</td>
-                        </tr>
+                        if (flight.Arrival != "Ulaanbaatar")
+                        {
+                            <tr>
+                                <td>@flight.FlightNumber</td>
+                                <td>@flight.Arrival</td>
+                                <td>@flight.DepartureTime.ToString("HH:mm")</td>
+                                <td style="@(GetStatusStyle(flight.Status))">@flight.Status</td>
+                            </tr>
+                        }
+                        
                     }
                 </tbody>
             </table>
@@ -129,10 +137,14 @@ else
         {
             "cancelled" => "color: white; background-color: red;",
             "delayed" => "color: white; background-color: orange;",
+            "boarding" => "color: white; background-color: green;",        
+            "landed" => "color: white; background-color: darkcyan;",        
+            "departed" => "color: white; background-color: darkslategray;", 
             "on time" => "color: white; background-color: green;",
             "flying" => "color: white; background-color: #2247bf;",
             _ => "color: black; background-color: lightgray;"
         };
+
     }
 
 

@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\connectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\connectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\flighthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\flighthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -126,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "DashBoardEditor.cs [Design]",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
               "RelativeDocumentMoniker": "ClientApp\\DashBoardEditor.cs",
@@ -138,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ConnectionService.cs",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\ConnectionService.cs",
               "RelativeDocumentMoniker": "ClientApp\\ConnectionService.cs",
@@ -157,7 +157,7 @@
               "RelativeDocumentMoniker": "ClientApp\\DashBoardEditor.cs",
               "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
               "RelativeToolTip": "ClientApp\\DashBoardEditor.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAowCEAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAmwJUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T04:12:32.359Z",
               "EditorCaption": ""
@@ -264,20 +264,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Flights.razor",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Flights.razor",
               "RelativeDocumentMoniker": "Dashboard\\Pages\\Flights.razor",
               "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Flights.razor",
               "RelativeToolTip": "Dashboard\\Pages\\Flights.razor",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAFgAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAB4AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-11T12:36:14.568Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "FlightHub.cs",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\FlightHub.cs",
               "RelativeDocumentMoniker": "Server\\FlightHub.cs",
@@ -290,7 +290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\Program.cs",
               "RelativeDocumentMoniker": "ClientApp\\Program.cs",
