@@ -28,6 +28,7 @@ namespace ClientApp
 
         public static async Task Start() {
             _tcpClient = new TcpClient();
+            await _tcpClient.ConnectAsync("127.0.0.1", 6000);
             _connection = new HubConnectionBuilder().WithUrl("https://localhost:7132/flighthub").WithAutomaticReconnect().Build();
 
 
@@ -46,7 +47,7 @@ namespace ClientApp
             });
 
 
-            _connection.On <FlightReadDTO>("ReceiveUpdatedFlight", (flight) =>
+            _connection.On <FlightReadDTO>("ReceiveFlightStatusUpdate", (flight) =>
             {
                 FlightStatusUpdate?.Invoke(flight);
             });
@@ -57,6 +58,33 @@ namespace ClientApp
                 SeatUpdate?.Invoke(flightId, seatNumber);
             });
         }
+
+        public static void SendUpdateToServer(string json)
+        {
+            if (_tcpClient == null || !_tcpClient.Connected)
+            {
+                Console.WriteLine("TCP client is not connected.");
+                return;
+            }
+
+            try
+            {
+                NetworkStream stream = _tcpClient.GetStream();
+
+                byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
+
+                stream.Write(jsonBytes, 0, jsonBytes.Length);
+
+                stream.Flush();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to send flight status: {ex.Message}");
+            }
+        }
+
+
+        
 
 
 

@@ -72,6 +72,7 @@ Accept: application/json
 
 ###
 
+
 # FlightId-aar Бүх seat avah
 GET {{Server_HostAddress}}/seat/2
 Accept: application/json

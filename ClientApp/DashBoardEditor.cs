@@ -1,7 +1,8 @@
-using System.Windows.Forms;
 using ClinetApp.DTO;
-using System.Drawing;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace ClientApp
 {
@@ -10,6 +11,7 @@ namespace ClientApp
         private DataGridView arrivalsDataGridView;
         private DataGridView departuresDataGridView;
         private SplitContainer splitContainer;
+        private List<FlightReadDTO> flights;
         private List<string> fstatuses = new List<string>();
 
 
@@ -103,6 +105,7 @@ namespace ClientApp
 
         private void OnAllFlightsReceived(IEnumerable<FlightReadDTO> flights)
         {
+            this.flights = flights.ToList();
             if (InvokeRequired)
             {
                 Invoke(new Action(() => LoadFlights(flights)));
@@ -115,15 +118,23 @@ namespace ClientApp
 
         private void OnFlightStatusUpdated(FlightReadDTO flight)
         {
+            var existingFlight = flights.FirstOrDefault(flgt => flgt.Id == flight.Id);
+            if (existingFlight != null)
+            {
+                flights.Remove(existingFlight);
+                flights.Add(flight);
+            }
+
             if (InvokeRequired)
             {
-                Invoke(new Action(() => UpdateFlight(flight)));
+                Invoke(() => UpdateFlight(flight));
             }
             else
             {
                 UpdateFlight(flight);
             }
         }
+
 
         private void LoadFlights(IEnumerable<FlightReadDTO> flights)
         {
@@ -254,6 +265,7 @@ namespace ClientApp
 
                 lbl.Click += (s, e) =>
                 {
+                    status = st;
                     labelST.Text = "Flight status: " + st;
                 };
 
@@ -269,7 +281,32 @@ namespace ClientApp
                 BackColor = Color.LightGreen,
                 FlatStyle = FlatStyle.Flat
             };
-            ok.Click += (sender, e) => { this.Controls.Remove(panel); };
+            ok.Click += (sender, e) => {
+
+                var upflight = flights.FirstOrDefault(flgt => flgt.FlightNumber == flightNumber);
+                var flightJson = new JObject
+                {
+                    ["action"] = "updateFlight",
+                    ["data"] = new JObject
+                    {
+                        ["Id"] = upflight.Id,
+                        ["FlightNumber"] = upflight.FlightNumber,
+                        ["Status"] = status,
+                        ["Departure"] = upflight.Departure,
+                        ["Arrival"] = upflight.Arrival,
+                        ["DepartureTime"] = upflight.DepartureTime,
+                        ["ArrivalTime"] = upflight.ArrivalTime,
+                        ["SeatCount"] = upflight.SeatCount,
+                    }
+                };
+
+                string jsonString = flightJson.ToString();
+
+                ConnectionService.SendUpdateToServer(jsonString);
+
+
+                this.Controls.Remove(panel); 
+            };
             panel.Controls.Add(ok);
 
             Button cancel = new Button

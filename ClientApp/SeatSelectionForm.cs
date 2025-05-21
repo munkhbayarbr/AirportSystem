@@ -10,28 +10,19 @@ namespace ClientApp
 {
     public partial class SeatSelectionForm : Form
     {
-        // Серверийн холболт
+        // HTTP client to your API
         private readonly HttpClient _httpClient = new()
         {
-            BaseAddress = new Uri("http://localhost:5106/")
+            BaseAddress = new Uri("http://localhost:5106/"),
+            Timeout = TimeSpan.FromSeconds(10)
         };
 
-        // Паспортын захиалга
+        // Current booking & seat data
         private BookingRecord _currentBooking;
-
-        // Нислэгийн бүх суудал
         private List<SeatRecord> _seatList = new();
-
-        // Авсан суудлууд
         private HashSet<int> _takenSeatNumbers = new();
 
-        // Суудлын товчнууд
-        private readonly Dictionary<int, Button> _seatButtons = new();
-
-        // Тогтмолүүд
         private const int _buttonSize = 40;
-        private const int _padding = 5;
-        private const int _cols = 6;  // эгнээнд суудал
 
         public SeatSelectionForm()
         {
@@ -41,82 +32,144 @@ namespace ClientApp
 
         private async void BtnSearch_Click(object sender, EventArgs e)
         {
-            // Паспорт унших
-            if (!int.TryParse(txtPassport.Text.Trim(), out var passportId))
+            btnSearch.Enabled = false;
+            try
             {
-                MessageBox.Show("Зөв паспорт дугаар оруулна уу.");
-                return;
-            }
+                // 1) Parse passport
+                if (!int.TryParse(txtPassport.Text.Trim(), out var passportId))
+                {
+                    MessageBox.Show("Зөв паспорт дугаар оруулна уу.");
+                    return;
+                }
 
-            // Захиалга авах
-            var bookings = await _httpClient
-                .GetFromJsonAsync<List<BookingRecord>>($"booking/getByPassportId/{passportId}");
-            if (bookings == null || bookings.Count == 0)
+                // 2) Fetch bookings for passport
+                var bookings = await _httpClient
+                    .GetFromJsonAsync<List<BookingRecord>>($"booking/getByPassportId/{passportId}")
+                    ?? new List<BookingRecord>();
+
+                if (bookings.Count == 0)
+                {
+                    MessageBox.Show("Booking олдсонгүй.");
+                    return;
+                }
+
+                _currentBooking = bookings[0];
+
+
+                _seatList = await _httpClient
+                    .GetFromJsonAsync<List<SeatRecord>>($"seat/{_currentBooking.FlightId}")
+                    ?? new List<SeatRecord>();
+
+                
+                var allBookings = await _httpClient
+                    .GetFromJsonAsync<List<BookingRecord>>("booking")
+                    ?? new List<BookingRecord>();
+
+                _takenSeatNumbers = allBookings
+                    .Where(b => b.FlightId == _currentBooking.FlightId && b.SeatNumber.HasValue)
+                    .Select(b => b.SeatNumber!.Value)
+                    .ToHashSet();
+
+
+                DrawAirplaneLayout();
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Booking олдсонгүй.");
-                return;
+                MessageBox.Show($"Алдаа гарлаа: {ex.Message}");
             }
-            _currentBooking = bookings[0];
-
-            // Суудлууд авах
-            _seatList = await _httpClient
-                .GetFromJsonAsync<List<SeatRecord>>($"seat/{_currentBooking.FlightId}")
-                ?? new List<SeatRecord>();
-
-            // Захиалга шүүх
-            var allBookings = await _httpClient
-                .GetFromJsonAsync<List<BookingRecord>>("booking")
-                ?? new List<BookingRecord>();
-
-            _takenSeatNumbers = allBookings
-                .Where(b => b.FlightId == _currentBooking.FlightId && b.SeatNumber.HasValue)
-                .Select(b => b.SeatNumber!.Value)
-                .ToHashSet();
-
-
-            // Суудал зурах
-            DrawSeatGrid();
+            finally
+            {
+                btnSearch.Enabled = true;
+            }
         }
 
-        private void DrawSeatGrid()
+        private void DrawAirplaneLayout()
         {
             panelSeats.Controls.Clear();
-            _seatButtons.Clear();
 
-            int totalSeats = _seatList.Count;
-            int rows = (int)Math.Ceiling((double)totalSeats / _cols);
+            var rows = _seatList
+                .Select(s => s.SeatNumber / 10)
+                .Distinct()
+                .OrderBy(r => r)
+                .ToList();
 
-            for (int i = 0; i < totalSeats; i++)
+            var tbl = new TableLayoutPanel
             {
-                var seat = _seatList[i];
-                int r = i / _cols;
-                int c = i % _cols;
+                Dock = DockStyle.Top,
+                AutoSize = true,
+                ColumnCount = 8,   
+                RowCount = rows.Count + 1,
+            };
 
-                var btn = new Button
-                {
-                    Width = _buttonSize,
-                    Height = _buttonSize,
-                    Left = c * (_buttonSize + _padding),
-                    Top = r * (_buttonSize + _padding),
-                    Text = seat.SeatNumber.ToString()
-                };
 
-                if (_takenSeatNumbers.Contains(seat.SeatNumber))
-                {
-                    btn.BackColor = Color.Red;
-                    btn.Enabled = false;
-                }
-                else
-                {
-                    btn.BackColor = Color.LightGray;
-                    btn.Click += SeatButton_Click;
-                }
+            tbl.ColumnStyles.Clear();
+            tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize)); // row numbers
+            for (int i = 0; i < 3; i++) tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tbl.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20)); // aisle
+            for (int i = 0; i < 3; i++) tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                panelSeats.Controls.Add(btn);
-                _seatButtons[seat.SeatNumber] = btn;
+            // Header row:   [ ]  A   B   C      D   E   F
+            tbl.Controls.Add(new Label { Text = "", AutoSize = true }, 0, 0);
+            tbl.Controls.Add(new Label { Text = "A", AutoSize = true, TextAlign = ContentAlignment.MiddleCenter }, 1, 0);
+            tbl.Controls.Add(new Label { Text = "B", AutoSize = true, TextAlign = ContentAlignment.MiddleCenter }, 2, 0);
+            tbl.Controls.Add(new Label { Text = "C", AutoSize = true, TextAlign = ContentAlignment.MiddleCenter }, 3, 0);
+            tbl.Controls.Add(new Label { Text = "" }, 4, 0);
+            tbl.Controls.Add(new Label { Text = "D", AutoSize = true, TextAlign = ContentAlignment.MiddleCenter }, 5, 0);
+            tbl.Controls.Add(new Label { Text = "E", AutoSize = true, TextAlign = ContentAlignment.MiddleCenter }, 6, 0);
+            tbl.Controls.Add(new Label { Text = "F", AutoSize = true, TextAlign = ContentAlignment.MiddleCenter }, 7, 0);
+
+            // Populate each row
+            for (int r = 0; r < rows.Count; r++)
+            {
+                int rowNum = rows[r];
+                int tableRow = r + 1;
+
+                // 1) Row label
+                tbl.Controls.Add(new Label
+                {
+                    Text = rowNum.ToString(),
+                    AutoSize = false,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Width = _buttonSize
+                }, 0, tableRow);
+
+                // 2) Seats A,B,C  = rowNum*10 + 1..3
+                AddSeatButton(tbl, rowNum * 10 + 1, tableRow, 1);
+                AddSeatButton(tbl, rowNum * 10 + 2, tableRow, 2);
+                AddSeatButton(tbl, rowNum * 10 + 3, tableRow, 3);
+
+                // 3) aisle at col 4 left blank
+
+                // 4) Seats D,E,F  = rowNum*10 + 4..6
+                AddSeatButton(tbl, rowNum * 10 + 4, tableRow, 5);
+                AddSeatButton(tbl, rowNum * 10 + 5, tableRow, 6);
+                AddSeatButton(tbl, rowNum * 10 + 6, tableRow, 7);
             }
 
+            panelSeats.Controls.Add(tbl);
             panelSeats.AutoScroll = true;
+        }
+
+        private void AddSeatButton(TableLayoutPanel tbl, int seatNumber, int row, int col)
+        {
+            // Only add a button if this seat actually exists in the list
+            if (!_seatList.Any(s => s.SeatNumber == seatNumber))
+                return;
+
+            bool taken = _takenSeatNumbers.Contains(seatNumber);
+            var btn = new Button
+            {
+                Text = seatNumber.ToString(),
+                Width = _buttonSize,
+                Height = _buttonSize,
+                Enabled = !taken,
+                BackColor = taken ? Color.Red : Color.LightGray,
+                FlatStyle = FlatStyle.Flat
+            };
+            if (!taken)
+                btn.Click += SeatButton_Click;
+
+            tbl.Controls.Add(btn, col, row);
         }
 
         private async void SeatButton_Click(object sender, EventArgs e)
@@ -124,7 +177,6 @@ namespace ClientApp
             if (!(sender is Button btn) || !int.TryParse(btn.Text, out var seatNumber))
                 return;
 
-            // Өгөгдөл үүсгэх
             var update = new BookingRecord
             {
                 Id = _currentBooking.Id,
@@ -134,16 +186,23 @@ namespace ClientApp
                 SeatNumber = seatNumber
             };
 
-            var resp = await _httpClient.PutAsJsonAsync("booking", update);
-            if (resp.IsSuccessStatusCode)
+            try
             {
-                btn.BackColor = Color.Red;
-                btn.Enabled = false;
-                MessageBox.Show($"Seat {seatNumber} амжилттай оноогдлоо!");
+                var resp = await _httpClient.PutAsJsonAsync("booking", update);
+                if (resp.IsSuccessStatusCode)
+                {
+                    btn.BackColor = Color.Red;
+                    btn.Enabled = false;
+                    MessageBox.Show($"Seat {seatNumber} амжилттай оноогдлоо!");
+                }
+                else
+                {
+                    MessageBox.Show("Суудал оноох үед алдаа гарлаа. Дахин оролдоно уу.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Суудал оноох үед алдаа гарлаа. Дахин оролдоно уу.");
+                MessageBox.Show($"Алдаа: {ex.Message}");
             }
         }
     }
