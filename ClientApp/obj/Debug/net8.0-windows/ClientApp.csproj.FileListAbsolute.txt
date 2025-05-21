@@ -469,7 +469,6 @@ C:\Users\sanaa\source\repos\AirportSystem\ClientApp\bin\Debug\net8.0-windows\run
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.csproj.AssemblyReference.cache
-C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.Form1.resources
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.SeatSelectionForm.resources
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.csproj.GenerateResource.cache
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.GeneratedMSBuildEditorConfig.editorconfig
@@ -484,3 +483,4 @@ C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\Cli
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.genruntimeconfig.cache
 C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ref\ClientApp.dll
 C:\Users\Tuvshuu\Desktop\windows\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.SeatSelectionForm.resources
+C:\Users\sanaa\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.DashBoardEditor.resources
