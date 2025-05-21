@@ -5,6 +5,14 @@
       {
         "Path": "Server\\Server.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "ClientApp\\ClientApp.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Dashboard\\Dashboard.csproj",
+        "Action": "Start"
       }
     ]
   }

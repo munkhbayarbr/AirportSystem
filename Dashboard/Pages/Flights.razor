@@ -92,6 +92,8 @@ else
         timer = new Timer(UpdateTime, null, 0, 1000);
 
 
+        //server luu api huselt ilgeej niit nislegiig avna.
+
         flights = await Http.GetFromJsonAsync<IEnumerable<FlightReadDTO>>("http://localhost:5106/flight");
 
         connection = new HubConnectionBuilder()
@@ -116,6 +118,7 @@ else
 
         // await connection.InvokeAsync("RequestFlightList");
 
+
         await StartSignalRConnection();
 
     }
@@ -123,11 +126,15 @@ else
 
     private async Task StartSignalRConnection()
     {
+
+        //server tei connection uusgene.
         connection = new HubConnectionBuilder()
             .WithUrl("https://localhost:7132/flighthub")
             .WithAutomaticReconnect()
             .Build();
 
+
+        //nislegiin status oorclogdohod barij avah event handler
         connection.On<FlightReadDTO>("ReceiveFlightStatusUpdate", (flight) =>
         {
             UpdateFlightStatus(flight);
@@ -138,7 +145,10 @@ else
         //await connection.InvokeAsync("RequestFlightList");
     }
 
-
+    /// <summary>
+    /// update hiigdsen nislegiig olj shinecleh function
+    /// </summary>
+    /// <param name="flight"></param>
     private void UpdateFlightStatus(FlightReadDTO flight)
     {
         var flightList = flights.ToList();
@@ -155,6 +165,12 @@ else
         flights = flightList;
     }
 
+
+    /// <summary>
+    /// status aas hamaaran background coloriig solino.
+    /// </summary>
+    /// <param name="status"></param>
+    /// <returns></returns>
     private string GetStatusStyle(string status)
     {
         return status.ToLower() switch
@@ -172,9 +188,12 @@ else
     }
 
 
-    
-    
-    
+
+
+    /// <summary>
+    /// tsag haruulna
+    /// </summary>
+    /// <param name="state"></param>
 
     private void UpdateTime(object? state)
     {
