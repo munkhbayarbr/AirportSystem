@@ -23,6 +23,9 @@ namespace ClientApp
         public delegate void AllFlightHandler(IEnumerable<FlightReadDTO> flights);
         public static event AllFlightHandler AllFlight;
 
+        public delegate void SeatUpdateHandler(int flightId, int seatId);
+        public static event SeatUpdateHandler SeatUpdate;
+
         public static async Task Start() {
             _tcpClient = new TcpClient();
             _connection = new HubConnectionBuilder().WithUrl("https://localhost:7132/flighthub").WithAutomaticReconnect().Build();
@@ -46,6 +49,12 @@ namespace ClientApp
             _connection.On <FlightReadDTO>("ReceiveUpdatedFlight", (flight) =>
             {
                 FlightStatusUpdate?.Invoke(flight);
+            });
+
+
+            _connection.On<int, int>("ReceiveSeatUpdate", (flightId, seatNumber) =>
+            {
+                SeatUpdate?.Invoke(flightId, seatNumber);
             });
         }
 

@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\connectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -86,7 +86,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 218,
-          "SelectedChildIndex": 20,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -151,13 +151,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "DashBoardEditor.cs",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
               "RelativeDocumentMoniker": "ClientApp\\DashBoardEditor.cs",
               "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
               "RelativeToolTip": "ClientApp\\DashBoardEditor.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBgAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAANwAAAAAAAAAAAAmwOgAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T04:12:32.359Z",
               "EditorCaption": ""
@@ -264,13 +264,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Flights.razor",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Flights.razor",
               "RelativeDocumentMoniker": "Dashboard\\Pages\\Flights.razor",
               "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Flights.razor",
               "RelativeToolTip": "Dashboard\\Pages\\Flights.razor",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAACUAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAB4AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-11T12:36:14.568Z",
               "EditorCaption": ""

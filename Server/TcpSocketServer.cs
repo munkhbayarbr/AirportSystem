@@ -172,6 +172,7 @@ namespace Server
 
                                         
                                     }
+                                    await _hubContext.Clients.All.SendAsync("ReceiveSeatUpdate", flightId, seatNumber);
                                     await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveSeatMessage", message);
                                     SeatLocks.TryRemove(seatLockKey, out _);
 
