@@ -36,6 +36,8 @@ namespace ClientApp
         /// <returns></returns>
 
         public static async Task Start() {
+
+            await Task.Delay(3000);
             _tcpClient = new TcpClient();
             await _tcpClient.ConnectAsync("127.0.0.1", 6000);
             _connection = new HubConnectionBuilder().WithUrl("https://localhost:7132/flighthub").WithAutomaticReconnect().Build();
@@ -43,9 +45,10 @@ namespace ClientApp
 
 
             RegisterEvents();
-
             await _connection.StartAsync();
+            
             await _connection.InvokeAsync("RequestFlightList");
+            
         }
 
 

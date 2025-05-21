@@ -25,7 +25,6 @@ namespace Server
         private readonly HttpClient _httpClient;
         private readonly IHubContext<FlightHub> _hubContext;
         private bool _isRunning;
-        //thread safety lock өөрөө зохицуулдаг учраас
         private readonly ConcurrentDictionary<TcpClient, string> _clientConnections = new();
         private static readonly ConcurrentDictionary<string, SemaphoreSlim> SeatLocks = new();
 
@@ -48,12 +47,12 @@ namespace Server
             Task.Run(() => ListenForClients());
         }
 
-
         /// <summary>
         /// Client холбогдохыг хүлээнэ. Infinite loop
         /// Client холбогдсон үед unique string id үүсгээд clientconnection dictionary -д нэмнэ.
         /// Дараа client бүрд тусгай task үүсгэн ажиллуулна.
         /// </summary>
+
         private void ListenForClients()
         {
             while (_isRunning)
@@ -76,6 +75,7 @@ namespace Server
                 }
             }
         }
+
 
 
         /// <summary>
@@ -128,7 +128,6 @@ namespace Server
 
                                 if (action == "updateFlight")
                                 {
-                                    //нислэг шинэчлэх үед 
                                     var flightData = obj["data"];
                                     if (flightData == null)
                                     {
@@ -162,7 +161,6 @@ namespace Server
                                 else if (action == "bookSeat")
                                 {
 
-                                    //суудал захиалах хүсэлт ирсэн үед
                                     var seatBooking = obj["data"];
                                     if (seatBooking == null)
                                     {
