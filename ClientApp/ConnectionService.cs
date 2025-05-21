@@ -10,6 +10,10 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ClientApp
 {
+
+    /// <summary>
+    /// Server <-> Client харилцааг хариуцаж ажиллах класс 
+    /// </summary>
     public static class ConnectionService
     {
         private static HubConnection _connection;
@@ -26,6 +30,11 @@ namespace ClientApp
         public delegate void SeatUpdateHandler(int flightId, int seatId);
         public static event SeatUpdateHandler SeatUpdate;
 
+        /// <summary>
+        /// Client үүсгэж SignalR тай холболт үүсгэнэ.
+        /// </summary>
+        /// <returns></returns>
+
         public static async Task Start() {
             _tcpClient = new TcpClient();
             await _tcpClient.ConnectAsync("127.0.0.1", 6000);
@@ -39,6 +48,10 @@ namespace ClientApp
             await _connection.InvokeAsync("RequestFlightList");
         }
 
+
+        /// <summary>
+        /// SignalR аас ирэх message үүдийг хариуцах handler үүдийг үүсгэнэ.
+        /// </summary>
         public static void RegisterEvents()
         {
             _connection.On < IEnumerable<FlightReadDTO>>("ReceiveAllFlights", (flights) =>
@@ -59,6 +72,11 @@ namespace ClientApp
             });
         }
 
+
+        /// <summary>
+        /// Server лүү message илгээх функц
+        /// </summary>
+        /// <param name="json"></param>
         public static void SendUpdateToServer(string json)
         {
             if (_tcpClient == null || !_tcpClient.Connected)
@@ -85,7 +103,10 @@ namespace ClientApp
 
 
         
-
+        /// <summary>
+        /// Closes connection
+        /// </summary>
+        /// <returns></returns>
 
 
         public static async Task Stop()

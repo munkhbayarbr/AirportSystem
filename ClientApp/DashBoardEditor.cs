@@ -14,12 +14,17 @@ namespace ClientApp
         private List<FlightReadDTO> flights;
         private List<string> fstatuses = new List<string>();
 
-
+        /// <summary>
+        /// Husnegtuudiig uusgej connection service tei holbono.
+        /// </summary>
         public DashBoardEditor()
         {
             InitializeComponent();
             InitializeDataGridViews();
             fstatuses.AddRange(new[]{ "On Time", "Boarding", "Cancelled", "Departed", "Landed", "Delayed", "Flying" });
+           
+            
+            /// main luu shiljuulne !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             try
             {
                 ConnectionService.Start();
@@ -40,6 +45,10 @@ namespace ClientApp
             await ConnectionService.Stop();
         }
 
+
+        /// <summary>
+        /// Dashboardiin medeelliig haruulah husnegtuudiig uusgene.
+        /// </summary>
         private void InitializeDataGridViews()
         {
             splitContainer = new SplitContainer
@@ -84,7 +93,10 @@ namespace ClientApp
             splitContainer.SplitterDistance = splitContainer.Width / 2;
 
         }
-
+        /// <summary>
+        /// husnegtuuddee baganuudaa oruulna.
+        /// </summary>
+        /// <param name="dgv"></param>
         private void ArrivalColumns(DataGridView dgv)
         {
             dgv.Columns.Add("FlightNumber", "Flight #");
@@ -95,6 +107,11 @@ namespace ClientApp
             dgv.Columns["Status"].DefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
         }
 
+
+        /// <summary>
+        /// husnegtuuddee baganuudaa oruulna.
+        /// </summary>
+        /// <param name="dgv"></param>
         private void DepartureColumns(DataGridView dgv)
         {
             dgv.Columns.Add("FlightNumber", "Flight #");
@@ -104,7 +121,11 @@ namespace ClientApp
 
             dgv.Columns["Status"].DefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
         }
-
+        /// <summary>
+        /// buh nislegiig husnegtend haruulah functsiig duudna.
+        ///
+        /// </summary>
+        /// <param name="flights"></param>
         private void OnAllFlightsReceived(IEnumerable<FlightReadDTO> flights)
         {
             this.flights = flights.ToList();
@@ -118,6 +139,11 @@ namespace ClientApp
             }
         }
 
+
+        /// <summary>
+        /// update hiisen nislegiig oorchilj shinechilsen statusiig haruulah functsiig duudna.
+        /// </summary>
+        /// <param name="flight"></param>
         private void OnFlightStatusUpdated(FlightReadDTO flight)
         {
             var existingFlight = flights.FirstOrDefault(flgt => flgt.Id == flight.Id);
@@ -137,7 +163,10 @@ namespace ClientApp
             }
         }
 
-
+        /// <summary>
+        /// buh nislegiig delgetsend haruulna.
+        /// </summary>
+        /// <param name="flights"></param>
         private void LoadFlights(IEnumerable<FlightReadDTO> flights)
         {
             arrivalsDataGridView.Rows.Clear();
@@ -171,7 +200,10 @@ namespace ClientApp
                 
             }
         }
-
+        /// <summary>
+        /// update hiisen nislegiig haruulna.
+        /// </summary>
+        /// <param name="flight"></param>
         private void UpdateFlight(FlightReadDTO flight)
         {
 
@@ -190,6 +222,13 @@ namespace ClientApp
                 }
             }
         }
+
+        /// <summary>
+        /// dashboardiin moriig darhad status solih panel iig gargaj irne.
+        /// connection service eer damjuulan nislegiin statusiig solino.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void DataGridView_RowClick(object sender, DataGridViewCellEventArgs e)
         {
