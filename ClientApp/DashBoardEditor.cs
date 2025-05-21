@@ -81,6 +81,8 @@ namespace ClientApp
 
             ArrivalColumns(arrivalsDataGridView);
             DepartureColumns(departuresDataGridView);
+            splitContainer.SplitterDistance = splitContainer.Width / 2;
+
         }
 
         private void ArrivalColumns(DataGridView dgv)

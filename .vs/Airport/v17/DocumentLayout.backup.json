@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\connectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\connectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\tcpsocketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\tcpsocketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\dto\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -94,7 +94,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 77,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -172,26 +172,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ConnectionService.cs",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\ConnectionService.cs",
               "RelativeDocumentMoniker": "ClientApp\\ConnectionService.cs",
               "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\ConnectionService.cs",
               "RelativeToolTip": "ClientApp\\ConnectionService.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAiwDEAAABFAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAqwDEAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T04:36:51.22Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "DashBoardEditor.cs",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
               "RelativeDocumentMoniker": "ClientApp\\DashBoardEditor.cs",
               "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
               "RelativeToolTip": "ClientApp\\DashBoardEditor.cs",
-              "ViewState": "AgIAABoBAAAAAAAAAAAUwC8BAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAAsBAAAAAAAAAAAUwBkBAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T04:12:32.359Z",
               "EditorCaption": ""
@@ -222,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TcpSocketServer.cs",
               "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\TcpSocketServer.cs",
               "RelativeDocumentMoniker": "Server\\TcpSocketServer.cs",
