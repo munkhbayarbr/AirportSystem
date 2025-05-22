@@ -86,8 +86,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "passengerId":1,
-  "flightId": 1,
+  "passengerId":5,
+  "flightId": 2,
   "bookingDate": "2025-06-02T09:00:00"
 }
 

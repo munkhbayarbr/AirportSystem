@@ -21,29 +21,18 @@ namespace ClientApp
         {
             InitializeComponent();
             InitializeDataGridViews();
-            fstatuses.AddRange(new[]{ "On Time", "Boarding", "Cancelled", "Departed", "Landed", "Delayed", "Flying" });
-           
-            
+            fstatuses.AddRange(new[] { "On Time", "Boarding", "Cancelled", "Departed", "Landed", "Delayed", "Flying" });
+
+
             /// main luu shiljuulne !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            try
-            {
-                ConnectionService.Start();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
+
 
             ConnectionService.AllFlight += OnAllFlightsReceived;
             ConnectionService.FlightStatusUpdate += OnFlightStatusUpdated;
-
-            this.FormClosing += DashBoardEditor_FormClosing;
+            ConnectionService.ReqFlight();
         }
 
-        private async void DashBoardEditor_FormClosing(object? sender, FormClosingEventArgs e)
-        {
-            await ConnectionService.Stop();
-        }
+        
 
 
         /// <summary>
@@ -174,7 +163,7 @@ namespace ClientApp
 
             foreach (var flight in flights)
             {
-                
+
                 if (flight.Arrival == "Ulaanbaatar")
                 {
                     var dgv = arrivalsDataGridView;
@@ -197,7 +186,7 @@ namespace ClientApp
                 }
 
 
-                
+
             }
         }
         /// <summary>
@@ -213,7 +202,7 @@ namespace ClientApp
                 if (row.Cells["FlightNumber"].Value?.ToString() == flight.FlightNumber)
                 {
                     row.Cells["Status"].Value = flight.Status;
-                    
+
                     if (flight.Status.Contains("Delayed") || flight.Status.Contains("Canceled"))
                     {
                         row.DefaultCellStyle.BackColor = Color.Yellow;
@@ -322,7 +311,8 @@ namespace ClientApp
                 BackColor = Color.LightGreen,
                 FlatStyle = FlatStyle.Flat
             };
-            ok.Click += (sender, e) => {
+            ok.Click += (sender, e) =>
+            {
 
                 var upflight = flights.FirstOrDefault(flgt => flgt.FlightNumber == flightNumber);
                 var flightJson = new JObject
@@ -346,7 +336,7 @@ namespace ClientApp
                 ConnectionService.SendUpdateToServer(jsonString);
 
 
-                this.Controls.Remove(panel); 
+                this.Controls.Remove(panel);
             };
             panel.Controls.Add(ok);
 
@@ -366,12 +356,5 @@ namespace ClientApp
 
 
         }
-
-
-
-
-
-
-
     }
 }

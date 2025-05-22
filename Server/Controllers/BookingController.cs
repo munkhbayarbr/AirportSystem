@@ -99,7 +99,8 @@ namespace Server.Controllers
             {
                 return NotFound(new { message = "Booking not found." });
             }
-            if (dto.SeatNumber != null && dto.FlightId != null)
+            if (booking.SeatNumber != null)
+                if (dto.SeatNumber != null && dto.FlightId != null) return NotFound(new { message = "Can't change the seat" });
             {
                 SeatDTO seat = await airportdb.Seat.GetSeat(dto.FlightId, (int)dto.SeatNumber);
                 if (seat == null)
@@ -108,7 +109,7 @@ namespace Server.Controllers
                 }
                 if (seat.isOccupied)
                 {
-                    return BadRequest(new { message = "Seat is already occupied." });
+                    return BadRequest(new { message = "Хэрэглэгч суудал сонгосон байна." });
                 }
                 await airportdb.Seat.UpdateSeat(dto.FlightId, (int)dto.SeatNumber, true);
             }
