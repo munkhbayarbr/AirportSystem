@@ -1,5 +1,7 @@
 ﻿using ClinetApp.DTO;
 using Microsoft.AspNetCore.SignalR.Client;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 
 using System.Collections.Generic;
@@ -13,7 +15,8 @@ using System.Linq;
 using System.Net.Http;
 
 using System.Net.Http.Json;
-
+using System.Net.Sockets;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ClientApp
@@ -371,96 +374,92 @@ namespace ClientApp
 
 
 
+        private async Task<(bool success, string message)> SendBookSeatViaTcp(int seatNumber)
+        {
+            try
+            {
+                var bookSeatData = new
+                {
+                    action = "bookSeat",
+                    data = new
+                    {
+                        Id = _currentBooking.Id,
+                        PassengerId = _currentBooking.PassengerId,
+                        FlightId = _currentBooking.FlightId,
+                        SeatNumber = seatNumber,
+                        BookingDate = _currentBooking.BookingDate
+                    }
+                };
+
+                var json = JsonConvert.SerializeObject(bookSeatData);
+                var bytes = Encoding.UTF8.GetBytes(json);
+
+                using var client = new TcpClient();
+                await client.ConnectAsync("127.0.0.1", 6000);
+                using var stream = client.GetStream();
+
+                await stream.WriteAsync(bytes, 0, bytes.Length);
+                await stream.FlushAsync();
+
+                var buffer = new byte[4096];
+                var bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                if (bytesRead > 0)
+                {
+                    var responseJson = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    var response = JObject.Parse(responseJson);
+
+                    bool success = response["success"]?.Value<bool>() ?? false;
+                    string message = response["message"]?.ToString() ?? "No message";
+
+                    return (success, message);
+                }
+
+                return (false, "Сервер хариу илгээгээгүй.");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"TCP холболт амжилтгүй: {ex.Message}");
+            }
+        }
 
 
-       
+
 
         private async void SeatButton_Click(object sender, EventArgs e)
-
         {
-
             if (!(sender is Button btn) || !int.TryParse(btn.Text, out var seatNumber))
-
                 return;
-            var confirm = MessageBox.Show($"Та {seatNumber} дугаартай суудлыг сонгохдоо итгэлтэй байна уу?",
-                                        "Суудал сонгох баталгаажуулалт",
-                                        MessageBoxButtons.YesNo,
-                                        MessageBoxIcon.Question);
+
+            var confirm = MessageBox.Show(
+                $"Та {seatNumber} дугаартай суудлыг сонгохдоо итгэлтэй байна уу?",
+                "Суудал сонгох баталгаажуулалт",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
             if (confirm != DialogResult.Yes)
                 return;
 
-            var update = new BookingRecord
+            var (success, message) = await SendBookSeatViaTcp(seatNumber);
 
+            MessageBox.Show(message);
+
+            if (!success) return;
+
+          
+            btn.BackColor = Color.Red;
+            btn.Enabled = false;
+            lblBookedSeat.Text = $"Суудал: {seatNumber}";
+            lblBookedSeat.BackColor = Color.Green;
+
+            var dr = MessageBox.Show("Boarding pass хэвлэх үү?", "Print Boarding Pass",
+                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes && _printDialog.ShowDialog() == DialogResult.OK)
             {
-
-                Id = _currentBooking.Id,
-
-                PassengerId = _currentBooking.PassengerId,
-
-                FlightId = _currentBooking.FlightId,
-
-                BookingDate = _currentBooking.BookingDate,
-
-                SeatNumber = seatNumber
-
-            };
-
-            try
-
-            {
-
-                var resp = await _httpClient.PutAsJsonAsync("booking", update);
-
-                if (resp.IsSuccessStatusCode)
-
-                {
-
-                    btn.BackColor = Color.Red;
-
-                    btn.Enabled = false;
-                    lblBookedSeat.Text = $"Суудал: {seatNumber}";
-                    lblBookedSeat.BackColor = Color.Green;
-
-                    MessageBox.Show($"Seat {seatNumber} амжилттай оноогдлоо!");
-
-
-                    var dr = MessageBox.Show("Boarding pass хэвлэх үү?", "Print Boarding Pass",
-
-                                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (dr == DialogResult.Yes)
-
-                    {
-
-                        // _previewDialog.ShowDialog();
-
-                        if (_printDialog.ShowDialog() == DialogResult.OK)
-
-                            _printDoc.Print();
-
-                    }
-
-                }
-
-                else
-
-                {
-                    var apiMsg = await resp.Content.ReadAsStringAsync();
-                    MessageBox.Show(apiMsg);
-
-                }
-
+                _printDoc.Print();
             }
-
-            catch (Exception ex)
-
-            {
-
-                MessageBox.Show($"Алдаа: {ex.Message}");
-
-            }
-
         }
+
+
 
         private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -473,14 +472,14 @@ namespace ClientApp
             var fontText = new Font("Arial", 10);
             var blackBrush = Brushes.Black;
 
-            // Draw border box
+       
             g.DrawRectangle(Pens.Black, left - 10, top - 10, 600, 220);
 
-            // Title
+ 
             g.DrawString("BOARDING PASS", fontTitle, blackBrush, left + 180, top);
             top += 40;
 
-            // Passenger Information
+         
             g.DrawString("Passenger Name: ", fontSubTitle, blackBrush, left, top);
             g.DrawString($"{passenger.Firstname} {passenger.Lastname}", fontText, blackBrush, left + 150, top);
             top += 25;
@@ -489,7 +488,7 @@ namespace ClientApp
             g.DrawString($"{txtPassport.Text}", fontText, blackBrush, left + 150, top);
             top += 25;
 
-            // Flight Info
+       
             g.DrawString("Flight: ", fontSubTitle, blackBrush, left, top);
             g.DrawString($"{_currentFlight.FlightNumber}", fontText, blackBrush, left + 150, top);
             top += 25;

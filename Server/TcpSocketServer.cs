@@ -120,7 +120,8 @@ namespace Server
                                 Console.WriteLine("Received empty or null JSON string.");
                                 continue;
                             }
-                            await ProcessClientMessage(jsonString, connectionId);
+                             await ProcessClientMessage(jsonString, connectionId, client, stream);
+
 
                             //try
                             //{
@@ -245,7 +246,8 @@ namespace Server
 
 
 
-        private async Task ProcessClientMessage(string json, string connectionId)
+        private async Task ProcessClientMessage(string json, string connectionId, TcpClient client, NetworkStream stream)
+
         {
             if (string.IsNullOrEmpty(json))
             {
@@ -263,7 +265,7 @@ namespace Server
                         await HandleFlightUpdate(obj, connectionId);
                         break;
                     case "bookSeat":
-                        await HandleSeatBooking(obj, connectionId);
+                        await HandleSeatBooking(obj, connectionId, client, stream);
                         break;
                     default:
                         Console.WriteLine("unknown action");
@@ -315,9 +317,8 @@ namespace Server
             await _hubContext.Clients.All.SendAsync("ReceiveFlightStatusUpdate", flightUpdateDTO);
         }
 
-        
 
-        private async Task HandleSeatBooking(JObject obj, string connectionId)
+        private async Task HandleSeatBooking(JObject obj, string connectionId, TcpClient client, NetworkStream stream)
         {
             var seatBooking = obj["data"];
             if (seatBooking == null)
@@ -326,17 +327,13 @@ namespace Server
                 return;
             }
 
-
             int flightId = seatBooking["FlightId"].Value<int>();
             int seatNumber = seatBooking["SeatNumber"].Value<int>();
-
             string seatLockKey = $"{flightId}_{seatNumber}";
 
             var seatLock = SeatLocks.GetOrAdd(seatLockKey, _ => new SemaphoreSlim(1, 1));
-
-            string message;
-
             await seatLock.WaitAsync();
+
             try
             {
                 var bookUpdateDTO = new BookingUpdateDTO(
@@ -357,17 +354,51 @@ namespace Server
                 var response = await _httpClient.PutAsync(apiUrl, jsonContent);
                 var responseContent = await response.Content.ReadAsStringAsync();
 
-                var json = JObject.Parse(responseContent);
-                message = json["message"]?.ToString() ?? "No message found.";
+                string message;
+                bool success = response.IsSuccessStatusCode;
 
-                await _hubContext.Clients.All.SendAsync("ReceiveSeatUpdate", flightId, seatNumber);
-                await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveSeatMessage", message);
+                try
+                {
+                    var json = JObject.Parse(responseContent);
+                    message = json["message"]?.ToString() ?? (success ? "Success" : "Unknown error");
+                }
+                catch
+                {
+                    message = success ? "Success" : "Failed with unknown error";
+                }
+
+                if (success)
+                {
+                    await _hubContext.Clients.All.SendAsync("ReceiveSeatUpdate", flightId, seatNumber);
+                }
+
+              
+                var responseJson = JsonConvert.SerializeObject(new
+                {
+                    success,
+                    message
+                });
+
+                var responseBytes = Encoding.UTF8.GetBytes(responseJson);
+                await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
+            }
+            catch (Exception ex)
+            {
+                var errorJson = JsonConvert.SerializeObject(new
+                {
+                    success = false,
+                    message = $"Booking failed: {ex.Message}"
+                });
+
+                var errorBytes = Encoding.UTF8.GetBytes(errorJson);
+                await stream.WriteAsync(errorBytes, 0, errorBytes.Length);
             }
             finally
             {
                 seatLock.Release();
             }
         }
+
 
 
 
