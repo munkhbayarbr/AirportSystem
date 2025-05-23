@@ -120,106 +120,108 @@ namespace Server
                                 Console.WriteLine("Received empty or null JSON string.");
                                 continue;
                             }
+                            await ProcessClientMessage(jsonString, connectionId);
 
-                            try
-                            {
-                                JObject obj = JObject.Parse(jsonString);
-                                string action = obj["action"]?.ToString();
+                            //try
+                            //{
+                            //    JObject obj = JObject.Parse(jsonString);
+                            //    string action = obj["action"]?.ToString();
 
-                                if (action == "updateFlight")
-                                {
-                                    var flightData = obj["data"];
-                                    if (flightData == null)
-                                    {
-                                        Console.WriteLine("Flight data is null.");
-                                        continue;
-                                    }
+                            //    if (action == "updateFlight")
+                            //    {
+                            //        var flightData = obj["data"];
+                            //        if (flightData == null)
+                            //        {
+                            //            Console.WriteLine("Flight data is null.");
+                            //            continue;
+                            //        }
 
-                                    var flightUpdateDTO = new FlightUpdateDTO(
-                                        flightData["Id"].Value<int>(),
-                                        flightData["FlightNumber"].Value<string>(),
-                                        flightData["Status"].Value<string>(),
-                                        flightData["Departure"].Value<string>(),
-                                        flightData["Arrival"].Value<string>(),
-                                        flightData["DepartureTime"].Value<DateTime>(),
-                                        flightData["ArrivalTime"].Value<DateTime>(),
-                                        flightData["SeatCount"].Value<int>()
-                                    );
+                            //        var flightUpdateDTO = new FlightUpdateDTO(
+                            //            flightData["Id"].Value<int>(),
+                            //            flightData["FlightNumber"].Value<string>(),
+                            //            flightData["Status"].Value<string>(),
+                            //            flightData["Departure"].Value<string>(),
+                            //            flightData["Arrival"].Value<string>(),
+                            //            flightData["DepartureTime"].Value<DateTime>(),
+                            //            flightData["ArrivalTime"].Value<DateTime>(),
+                            //            flightData["SeatCount"].Value<int>()
+                            //        );
 
-                                    var jsonContent = new StringContent(
-                                        Newtonsoft.Json.JsonConvert.SerializeObject(flightUpdateDTO),
-                                        Encoding.UTF8,
-                                        "application/json"
-                                    );
+                            //        var jsonContent = new StringContent(
+                            //            Newtonsoft.Json.JsonConvert.SerializeObject(flightUpdateDTO),
+                            //            Encoding.UTF8,
+                            //            "application/json"
+                            //        );
 
-                                    var apiUrl = "http://localhost:5106/flight";
-                                    var response = await _httpClient.PutAsync(apiUrl, jsonContent);
-                                    var responseContent = await response.Content.ReadAsStringAsync();
+                            //        var apiUrl = "http://localhost:5106/flight";
+                            //        var response = await _httpClient.PutAsync(apiUrl, jsonContent);
+                            //        var responseContent = await response.Content.ReadAsStringAsync();
 
-                                    await _hubContext.Clients.All.SendAsync("ReceiveFlightStatusUpdate", flightUpdateDTO);
-                                }
-                                else if (action == "bookSeat")
-                                {
+                            //        await _hubContext.Clients.All.SendAsync("ReceiveFlightStatusUpdate", flightUpdateDTO);
+                            //    }
+                            //    else if (action == "bookSeat")
+                            //    {
 
-                                    var seatBooking = obj["data"];
-                                    if (seatBooking == null)
-                                    {
-                                        Console.WriteLine("seatBooking is null.");
-                                        continue;
-                                    }
+                            //        var seatBooking = obj["data"];
+                            //        if (seatBooking == null)
+                            //        {
+                            //            Console.WriteLine("seatBooking is null.");
+                            //            continue;
+                            //        }
 
 
-                                    int flightId = seatBooking["FlightId"].Value<int>();
-                                    int seatNumber = seatBooking["SeatNumber"].Value<int>();
+                            //        int flightId = seatBooking["FlightId"].Value<int>();
+                            //        int seatNumber = seatBooking["SeatNumber"].Value<int>();
 
-                                    string seatLockKey = $"{flightId}_{seatNumber}";
+                            //        string seatLockKey = $"{flightId}_{seatNumber}";
 
-                                    var seatLock = SeatLocks.GetOrAdd(seatLockKey, _ => new SemaphoreSlim(1, 1));
+                            //        var seatLock = SeatLocks.GetOrAdd(seatLockKey, _ => new SemaphoreSlim(1, 1));
 
-                                    string message;
+                            //        string message;
 
-                                    await seatLock.WaitAsync();
-                                    try
-                                    {
-                                        var bookUpdateDTO = new BookingUpdateDTO(
-                                            seatBooking["Id"].Value<int>(),
-                                            seatBooking["PassengerId"].Value<int>(),
-                                            seatBooking["FlightId"].Value<int>(),
-                                            seatBooking["SeatNumber"].Value<int>(),
-                                            seatBooking["BookingDate"].Value<DateTime>()
-                                        );
+                            //        await seatLock.WaitAsync();
+                            //        try
+                            //        {
+                            //            var bookUpdateDTO = new BookingUpdateDTO(
+                            //                seatBooking["Id"].Value<int>(),
+                            //                seatBooking["PassengerId"].Value<int>(),
+                            //                seatBooking["FlightId"].Value<int>(),
+                            //                seatBooking["SeatNumber"].Value<int>(),
+                            //                seatBooking["BookingDate"].Value<DateTime>()
+                            //            );
 
-                                        var jsonContent = new StringContent(
-                                            Newtonsoft.Json.JsonConvert.SerializeObject(bookUpdateDTO),
-                                            Encoding.UTF8,
-                                            "application/json"
-                                        );
+                            //            var jsonContent = new StringContent(
+                            //                Newtonsoft.Json.JsonConvert.SerializeObject(bookUpdateDTO),
+                            //                Encoding.UTF8,
+                            //                "application/json"
+                            //            );
 
-                                        var apiUrl = "http://localhost:5106/booking";
-                                        var response = await _httpClient.PutAsync(apiUrl, jsonContent);
-                                        var responseContent = await response.Content.ReadAsStringAsync();
+                            //            var apiUrl = "http://localhost:5106/booking";
+                            //            var response = await _httpClient.PutAsync(apiUrl, jsonContent);
+                            //            var responseContent = await response.Content.ReadAsStringAsync();
 
-                                        var json = JObject.Parse(responseContent);
-                                        message = json["message"]?.ToString() ?? "No message found.";
-                                    }
-                                    finally
-                                    {
-                                        seatLock.Release();
-                                    }
-                                    await _hubContext.Clients.All.SendAsync("ReceiveSeatUpdate", flightId, seatNumber);
-                                    await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveSeatMessage", message);
-                                    
+                            //            var json = JObject.Parse(responseContent);
+                            //            message = json["message"]?.ToString() ?? "No message found.";
 
-                                }
-                            }
-                            catch (JsonReaderException jex)
-                            {
-                                Console.WriteLine($"JSON parsing error: {jex.Message}");
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"Unexpected error: {ex.Message}");
-                            }
+                            //            await _hubContext.Clients.All.SendAsync("ReceiveSeatUpdate", flightId, seatNumber);
+                            //            await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveSeatMessage", message);
+                            //        }
+                            //        finally
+                            //        {
+                            //            seatLock.Release();
+                            //        }
+
+
+                            //    }
+                            //}
+                            //catch (JsonReaderException jex)
+                            //{
+                            //    Console.WriteLine($"JSON parsing error: {jex.Message}");
+                            //}
+                            //catch (Exception ex)
+                            //{
+                            //    Console.WriteLine($"Unexpected error: {ex.Message}");
+                            //}
 
                             messageBuilder.Clear();
                         }
@@ -242,6 +244,130 @@ namespace Server
         }
 
 
+
+        private async Task ProcessClientMessage(string json, string connectionId)
+        {
+            if (string.IsNullOrEmpty(json))
+            {
+                Console.WriteLine("Json string is empty!"); return;
+            }
+
+            try
+            {
+
+                JObject obj = JObject.Parse(json);
+                string action = obj["action"]?.ToString();
+                switch (action)
+                {
+                    case "updateFlight":
+                        await HandleFlightUpdate(obj, connectionId);
+                        break;
+                    case "bookSeat":
+                        await HandleSeatBooking(obj, connectionId);
+                        break;
+                    default:
+                        Console.WriteLine("unknown action");
+                        break;
+                }
+
+            }
+            catch (JsonReaderException jex) { 
+            
+            }
+        }
+
+
+        private async Task HandleFlightUpdate(JObject obj, string connectionId)
+        {
+            var flightData = obj["data"];
+            if (flightData == null)
+            {
+                Console.WriteLine("Flight data is null.");
+                return;
+            }
+
+            var flightUpdateDTO = new FlightUpdateDTO(
+                flightData["Id"].Value<int>(),
+                flightData["FlightNumber"].Value<string>(),
+                flightData["Status"].Value<string>(),
+                flightData["Departure"].Value<string>(),
+                flightData["Arrival"].Value<string>(),
+                flightData["DepartureTime"].Value<DateTime>(),
+                flightData["ArrivalTime"].Value<DateTime>(),
+                flightData["SeatCount"].Value<int>()
+            );
+            await UpdateFlightApi(flightUpdateDTO);
+        }
+
+
+        private async Task UpdateFlightApi(FlightUpdateDTO flightUpdateDTO)
+        {
+            var jsonContent = new StringContent(
+                JsonConvert.SerializeObject(flightUpdateDTO),
+                Encoding.UTF8,
+                "application/json"
+            );
+
+            var apiUrl = "http://localhost:5106/flight";
+            var response = await _httpClient.PutAsync(apiUrl, jsonContent);
+            string responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine( responseContent );
+            await _hubContext.Clients.All.SendAsync("ReceiveFlightStatusUpdate", flightUpdateDTO);
+        }
+
+        
+
+        private async Task HandleSeatBooking(JObject obj, string connectionId)
+        {
+            var seatBooking = obj["data"];
+            if (seatBooking == null)
+            {
+                Console.WriteLine("seatBooking is null.");
+                return;
+            }
+
+
+            int flightId = seatBooking["FlightId"].Value<int>();
+            int seatNumber = seatBooking["SeatNumber"].Value<int>();
+
+            string seatLockKey = $"{flightId}_{seatNumber}";
+
+            var seatLock = SeatLocks.GetOrAdd(seatLockKey, _ => new SemaphoreSlim(1, 1));
+
+            string message;
+
+            await seatLock.WaitAsync();
+            try
+            {
+                var bookUpdateDTO = new BookingUpdateDTO(
+                    seatBooking["Id"].Value<int>(),
+                    seatBooking["PassengerId"].Value<int>(),
+                    seatBooking["FlightId"].Value<int>(),
+                    seatBooking["SeatNumber"].Value<int>(),
+                    seatBooking["BookingDate"].Value<DateTime>()
+                );
+
+                var jsonContent = new StringContent(
+                    Newtonsoft.Json.JsonConvert.SerializeObject(bookUpdateDTO),
+                    Encoding.UTF8,
+                    "application/json"
+                );
+
+                var apiUrl = "http://localhost:5106/booking";
+                var response = await _httpClient.PutAsync(apiUrl, jsonContent);
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                var json = JObject.Parse(responseContent);
+                message = json["message"]?.ToString() ?? "No message found.";
+
+                await _hubContext.Clients.All.SendAsync("ReceiveSeatUpdate", flightId, seatNumber);
+                await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveSeatMessage", message);
+            }
+            finally
+            {
+                seatLock.Release();
+            }
+        }
 
 
 

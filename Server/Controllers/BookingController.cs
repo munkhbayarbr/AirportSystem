@@ -109,7 +109,7 @@ namespace Server.Controllers
                 }
                 if (seat.isOccupied)
                 {
-                    return BadRequest(new { message = "Хэрэглэгч суудал сонгосон байна." });
+                    return BadRequest(new { message = "Seat is unavailable." });
                 }
                 await airportdb.Seat.UpdateSeat(dto.FlightId, (int)dto.SeatNumber, true);
             }

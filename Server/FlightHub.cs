@@ -24,6 +24,12 @@ namespace Server
             await Clients.Client(connectionId).SendAsync("ReceiveSeatMessage", message);
         }
 
+        public async Task TestConcurrent(string message, string connectionId)
+        {
+            await Clients.Client(connectionId).SendAsync("TestMessage", message);
+        }
+
+
         public async Task RequestFlightList()
         {
             IEnumerable<FlightReadDTO> flights = await _airportDb.Flight.GetAllFlights();
