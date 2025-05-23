@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Server.DA;
 using Server.DTO;
 
@@ -9,10 +10,11 @@ namespace Server.Controllers
     public class BookingController : ControllerBase
     {
         private readonly ILogger<BookingController> _logger;
-
-        public BookingController(ILogger<BookingController> logger)
+        private readonly IHubContext<SeatHub> _hubContext;
+        public BookingController(ILogger<BookingController> logger, IHubContext<SeatHub> hubContext)
         {
             _logger = logger;
+            _hubContext = hubContext;
         }
 
         /// <summary>
@@ -99,9 +101,13 @@ namespace Server.Controllers
             {
                 return NotFound(new { message = "Booking not found." });
             }
+
             if (booking.SeatNumber != null)
-                if (dto.SeatNumber != null && dto.FlightId != null) return NotFound(new { message = "Can't change the seat" });
             {
+                if (dto.SeatNumber != null && dto.FlightId != null)
+                    return BadRequest(new { message = "Cannot change assigned seat." });
+            }
+
                 SeatDTO seat = await airportdb.Seat.GetSeat(dto.FlightId, (int)dto.SeatNumber);
                 if (seat == null)
                 {
@@ -112,8 +118,11 @@ namespace Server.Controllers
                     return BadRequest(new { message = "Seat is unavailable." });
                 }
                 await airportdb.Seat.UpdateSeat(dto.FlightId, (int)dto.SeatNumber, true);
-            }
+            
             await airportdb.Booking.UpdateBooking(dto);
+            await _hubContext.Clients.Group($"flight-{dto.FlightId}")
+                .SendAsync("ReceiveSeatBooked", dto.FlightId, dto.SeatNumber);
+
             return Ok(new { message = "Booking updated successfully." });
         }
 

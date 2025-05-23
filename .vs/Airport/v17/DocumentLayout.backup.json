@@ -1,125 +1,185 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\",
+  "WorkspaceRootPath": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\flighthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\flighthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\tcpsocketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\tcpsocketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\seatselectionform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\seatselectionform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE7A562-4363-4F4E-A408-1A01D8F04BCA}|Test\\Test.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\test\\sockettest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AE7A562-4363-4F4E-A408-1A01D8F04BCA}|Test\\Test.csproj|solutionrelative:test\\sockettest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\connectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\connectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE7A562-4363-4F4E-A408-1A01D8F04BCA}|Test\\Test.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\test\\apitest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AE7A562-4363-4F4E-A408-1A01D8F04BCA}|Test\\Test.csproj|solutionrelative:test\\apitest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\controllers\\seatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\controllers\\seatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\da\\seatdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\da\\seatdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\da\\bookingda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\da\\bookingda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|C:\\Users\\sanaa\\source\\repos\\AirportSystem\\clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\flightinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\clientapp\\seatselectionform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\seatselectionform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\seathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\seathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|C:\\Users\\munkh\\source\\repos\\AirportSystem\\clientapp\\seatselectionform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\seatselectionform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\da\\bookingda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\da\\bookingda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\pages\\flightlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\flightlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\flights.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|C:\\Users\\munkh\\source\\repos\\AirportSystem\\clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\clientapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\clientapp\\seatlocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\seatlocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dashboardeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\fligthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\fligthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\flighthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\flighthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\flightinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\flightinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\controllers\\flightcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\clientapp\\clientapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\clientapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\tcpsocketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\tcpsocketserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\flighthubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\flighthubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\flightinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\flightinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE7A562-4363-4F4E-A408-1A01D8F04BCA}|Test\\Test.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\test\\apitest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AE7A562-4363-4F4E-A408-1A01D8F04BCA}|Test\\Test.csproj|solutionrelative:test\\apitest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\dto\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\dto\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\da\\seatdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\da\\seatdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\controllers\\flightcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\controllers\\flightcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\dto\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dto\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\controllers\\passengercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\controllers\\passengercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\clientapp\\dto\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AE5AEF9D-F5FD-4CE1-B602-2526AC7A744A}|ClientApp\\ClientApp.csproj|solutionrelative:clientapp\\dto\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\dto\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\dto\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\dashboard\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\da\\passengerda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\da\\passengerda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\da\\passengerda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\da\\flightda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\da\\flightda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\dto\\seatdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\dto\\seatdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\da\\airportdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\da\\airportdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\dto\\passengerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\dto\\passengerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\dto\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\dto\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\sanaa\\source\\repos\\airportsystem\\server\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\server\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{606F88C3-A37F-46C5-866C-45396D9BD6A0}|Server\\Server.csproj|solutionrelative:server\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|c:\\users\\munkh\\source\\repos\\airportsystem\\dashboard\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B357569B-4467-4C64-B9C4-C2660F1D5704}|Dashboard\\Dashboard.csproj|solutionrelative:dashboard\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
-      "VerticalTabListWidth": 275,
+      "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 77,
-          "SelectedChildIndex": 13,
+          "DockedHeight": 296,
+          "SelectedChildIndex": 9,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
@@ -142,259 +202,192 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "SeatDB.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\DA\\SeatDB.cs",
-              "RelativeDocumentMoniker": "Server\\DA\\SeatDB.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\DA\\SeatDB.cs",
-              "RelativeToolTip": "Server\\DA\\SeatDB.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAYwDEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "SeatSelectionForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\SeatSelectionForm.cs",
+              "RelativeDocumentMoniker": "ClientApp\\SeatSelectionForm.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\SeatSelectionForm.cs [Design]",
+              "RelativeToolTip": "ClientApp\\SeatSelectionForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T08:11:38.829Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "SeatController.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Controllers\\SeatController.cs",
-              "RelativeDocumentMoniker": "Server\\Controllers\\SeatController.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Controllers\\SeatController.cs",
-              "RelativeToolTip": "Server\\Controllers\\SeatController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T08:11:23.68Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SocketTest.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Test\\SocketTest.cs",
-              "RelativeDocumentMoniker": "Test\\SocketTest.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Test\\SocketTest.cs",
-              "RelativeToolTip": "Test\\SocketTest.cs",
-              "ViewState": "AgIAANwAAAAAAAAAAAAqwOsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T07:33:35.859Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T20:11:41.049Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DashBoardEditor.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
-              "RelativeDocumentMoniker": "ClientApp\\DashBoardEditor.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
-              "RelativeToolTip": "ClientApp\\DashBoardEditor.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAmwEQAAAArAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Program.cs",
+              "RelativeDocumentMoniker": "Server\\Program.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Program.cs",
+              "RelativeToolTip": "Server\\Program.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA2wBAAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T05:43:45.589Z",
+              "WhenOpened": "2025-05-10T09:51:59.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SeatHub.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\SeatHub.cs",
+              "RelativeDocumentMoniker": "Server\\SeatHub.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\SeatHub.cs",
+              "RelativeToolTip": "Server\\SeatHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T15:22:33.739Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "SeatSelectionForm.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\SeatSelectionForm.cs",
-              "RelativeDocumentMoniker": "ClientApp\\SeatSelectionForm.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\SeatSelectionForm.cs",
-              "RelativeToolTip": "ClientApp\\SeatSelectionForm.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAowDoAAAAAAAAAAAAAAA==",
+              "Title": "BookingDA.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\BookingDA.cs",
+              "RelativeDocumentMoniker": "Server\\DA\\BookingDA.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\BookingDA.cs",
+              "RelativeToolTip": "Server\\DA\\BookingDA.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAuwA0AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T03:52:51.499Z",
+              "WhenOpened": "2025-05-13T08:17:46.219Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ApiTest.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Test\\ApiTest.cs",
-              "RelativeDocumentMoniker": "Test\\ApiTest.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Test\\ApiTest.cs",
-              "RelativeToolTip": "Test\\ApiTest.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAswBwAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T15:57:59.888Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "FlightDTO.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DTO\\FlightDTO.cs",
-              "RelativeDocumentMoniker": "ClientApp\\DTO\\FlightDTO.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DTO\\FlightDTO.cs",
-              "RelativeToolTip": "ClientApp\\DTO\\FlightDTO.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T09:54:26.911Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "BookingDTO.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DTO\\BookingDTO.cs",
-              "RelativeDocumentMoniker": "ClientApp\\DTO\\BookingDTO.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DTO\\BookingDTO.cs",
-              "RelativeToolTip": "ClientApp\\DTO\\BookingDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T09:07:24.457Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "DashBoardEditor.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
-              "RelativeDocumentMoniker": "ClientApp\\DashBoardEditor.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs [Design]",
-              "RelativeToolTip": "ClientApp\\DashBoardEditor.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T05:31:03.425Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ConnectionService.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\ConnectionService.cs",
-              "RelativeDocumentMoniker": "ClientApp\\ConnectionService.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\ConnectionService.cs",
-              "RelativeToolTip": "ClientApp\\ConnectionService.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAUwF4AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T04:36:51.22Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "FlightInfo.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\FlightInfo.cs",
-              "RelativeDocumentMoniker": "Server\\FlightInfo.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\FlightInfo.cs",
-              "RelativeToolTip": "Server\\FlightInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T13:50:49.969Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "app.css",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\wwwroot\\css\\app.css",
-              "RelativeDocumentMoniker": "Dashboard\\wwwroot\\css\\app.css",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\wwwroot\\css\\app.css",
-              "RelativeToolTip": "Dashboard\\wwwroot\\css\\app.css",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAF0AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-18T13:36:39.512Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TcpSocketServer.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\TcpSocketServer.cs",
-              "RelativeDocumentMoniker": "Server\\TcpSocketServer.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\TcpSocketServer.cs",
-              "RelativeToolTip": "Server\\TcpSocketServer.cs",
-              "ViewState": "AgIAAEMBAAAAAAAAAAAiwGABAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T10:13:26.754Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Server.http",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Server.http",
-              "RelativeDocumentMoniker": "Server\\Server.http",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Server.http",
-              "RelativeToolTip": "Server\\Server.http",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAAAFkAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-05-13T06:03:59.202Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "FlightController.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Controllers\\FlightController.cs",
-              "RelativeDocumentMoniker": "Server\\Controllers\\FlightController.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Controllers\\FlightController.cs",
-              "RelativeToolTip": "Server\\Controllers\\FlightController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T12:36:00.145Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "BookingController.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Controllers\\BookingController.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Controllers\\BookingController.cs",
               "RelativeDocumentMoniker": "Server\\Controllers\\BookingController.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Controllers\\BookingController.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Controllers\\BookingController.cs",
               "RelativeToolTip": "Server\\Controllers\\BookingController.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAuwG8AAABQAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAA4wHIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T12:37:20.975Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "BookingDA.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\DA\\BookingDA.cs",
-              "RelativeDocumentMoniker": "Server\\DA\\BookingDA.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\DA\\BookingDA.cs",
-              "RelativeToolTip": "Server\\DA\\BookingDA.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAgwFcAAACVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T08:17:46.219Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "BookingDTO.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\DTO\\BookingDTO.cs",
-              "RelativeDocumentMoniker": "Server\\DTO\\BookingDTO.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\DTO\\BookingDTO.cs",
-              "RelativeToolTip": "Server\\DTO\\BookingDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:33:28.86Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "SeatSelectionForm.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\SeatSelectionForm.cs",
+              "RelativeDocumentMoniker": "ClientApp\\SeatSelectionForm.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\SeatSelectionForm.cs",
+              "RelativeToolTip": "ClientApp\\SeatSelectionForm.cs",
+              "ViewState": "AgIAAMMAAAAAAAAAAAAqwNYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T20:13:24.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DashBoardEditor.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
+              "RelativeDocumentMoniker": "ClientApp\\DashBoardEditor.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs [Design]",
+              "RelativeToolTip": "ClientApp\\DashBoardEditor.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T13:50:32.402Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FlightList.razor",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\FlightList.razor",
+              "RelativeDocumentMoniker": "Dashboard\\Pages\\FlightList.razor",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\FlightList.razor",
+              "RelativeToolTip": "Dashboard\\Pages\\FlightList.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-11T12:29:28.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Flights.razor",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Flights.razor",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Flights.razor",
               "RelativeDocumentMoniker": "Dashboard\\Pages\\Flights.razor",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Flights.razor",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Flights.razor",
               "RelativeToolTip": "Dashboard\\Pages\\Flights.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAAKwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-11T12:36:14.568Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\Program.cs",
+              "RelativeDocumentMoniker": "ClientApp\\Program.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\Program.cs",
+              "RelativeToolTip": "ClientApp\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T08:45:48.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DashBoardEditor.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
+              "RelativeDocumentMoniker": "ClientApp\\DashBoardEditor.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\DashBoardEditor.cs",
+              "RelativeToolTip": "ClientApp\\DashBoardEditor.cs",
+              "ViewState": "AgIAABIBAAAAAAAAAAAYwCEBAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T13:50:43.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SeatLocation.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\SeatLocation.cs",
+              "RelativeDocumentMoniker": "ClientApp\\SeatLocation.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\SeatLocation.cs",
+              "RelativeToolTip": "ClientApp\\SeatLocation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T09:15:42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FligthService.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\FligthService.cs",
+              "RelativeDocumentMoniker": "Server\\FligthService.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\FligthService.cs",
+              "RelativeToolTip": "Server\\FligthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T08:08:49.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "FlightHub.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\FlightHub.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\FlightHub.cs",
               "RelativeDocumentMoniker": "Server\\FlightHub.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\FlightHub.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\FlightHub.cs",
               "RelativeToolTip": "Server\\FlightHub.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAswBQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-10T09:51:20.409Z",
               "EditorCaption": ""
@@ -402,67 +395,371 @@
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\Program.cs",
-              "RelativeDocumentMoniker": "ClientApp\\Program.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\ClientApp\\Program.cs",
-              "RelativeToolTip": "ClientApp\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Title": "FlightInfo.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\FlightInfo.cs",
+              "RelativeDocumentMoniker": "Server\\FlightInfo.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\FlightInfo.cs",
+              "RelativeToolTip": "Server\\FlightInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T08:45:48.673Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "PassengerDA.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\DA\\PassengerDA.cs",
-              "RelativeDocumentMoniker": "Server\\DA\\PassengerDA.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\DA\\PassengerDA.cs",
-              "RelativeToolTip": "Server\\DA\\PassengerDA.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAMwAwAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T08:17:13.324Z"
+              "WhenOpened": "2025-05-11T07:07:14.536Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Program.cs",
-              "RelativeDocumentMoniker": "Server\\Program.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Program.cs",
-              "RelativeToolTip": "Server\\Program.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAswDkAAAAyAAAAAAAAAA==",
+              "Title": "ClientApp",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\ClientApp.csproj",
+              "RelativeDocumentMoniker": "ClientApp\\ClientApp.csproj",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\ClientApp\\ClientApp.csproj",
+              "RelativeToolTip": "ClientApp\\ClientApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-23T15:24:07.907Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Server.http",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Server.http",
+              "RelativeDocumentMoniker": "Server\\Server.http",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Server.http",
+              "RelativeToolTip": "Server\\Server.http",
+              "ViewState": "AgIAADkAAAAAAAAAAAAgwEwAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-05-13T06:03:59.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "FlightDTO.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\FlightDTO.cs",
+              "RelativeDocumentMoniker": "Dashboard\\FlightDTO.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\FlightDTO.cs",
+              "RelativeToolTip": "Dashboard\\FlightDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T09:51:59.52Z"
+              "WhenOpened": "2025-05-21T13:51:48.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Server.csproj",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Server.csproj",
+              "RelativeDocumentMoniker": "Server\\Server.csproj",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Server.csproj",
+              "RelativeToolTip": "Server\\Server.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-11T07:06:45.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "TcpSocketServer.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\TcpSocketServer.cs",
+              "RelativeDocumentMoniker": "Server\\TcpSocketServer.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\TcpSocketServer.cs",
+              "RelativeToolTip": "Server\\TcpSocketServer.cs",
+              "ViewState": "AgIAAKkAAAAAAAAAAAAYwL0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T10:13:26.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "FlightInfo.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\FlightInfo.cs",
+              "RelativeDocumentMoniker": "Dashboard\\FlightInfo.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\FlightInfo.cs",
+              "RelativeToolTip": "Dashboard\\FlightInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T12:33:22.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "FlightHubService.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\FlightHubService.cs",
+              "RelativeDocumentMoniker": "Dashboard\\FlightHubService.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\FlightHubService.cs",
+              "RelativeToolTip": "Dashboard\\FlightHubService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T12:26:56.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ApiTest.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Test\\ApiTest.cs",
+              "RelativeDocumentMoniker": "Test\\ApiTest.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Test\\ApiTest.cs",
+              "RelativeToolTip": "Test\\ApiTest.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAAwIkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T20:10:41.168Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 23,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Server\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Server\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-13T06:32:14.862Z"
+              "Title": "FlightDTO.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DTO\\FlightDTO.cs",
+              "RelativeDocumentMoniker": "Server\\DTO\\FlightDTO.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DTO\\FlightDTO.cs",
+              "RelativeToolTip": "Server\\DTO\\FlightDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T07:25:20.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "FlightController.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Controllers\\FlightController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\FlightController.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Controllers\\FlightController.cs",
+              "RelativeToolTip": "Server\\Controllers\\FlightController.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAhwDIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T12:36:00.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "PassengerController.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Controllers\\PassengerController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\PassengerController.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Controllers\\PassengerController.cs",
+              "RelativeToolTip": "Server\\Controllers\\PassengerController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIAxwB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T12:21:01.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "PassengerDA.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\PassengerDA.cs",
+              "RelativeDocumentMoniker": "Server\\DA\\PassengerDA.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\PassengerDA.cs",
+              "RelativeToolTip": "Server\\DA\\PassengerDA.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAMwAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T08:17:13.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "SeatDTO.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DTO\\SeatDTO.cs",
+              "RelativeDocumentMoniker": "Server\\DTO\\SeatDTO.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DTO\\SeatDTO.cs",
+              "RelativeToolTip": "Server\\DTO\\SeatDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T12:55:32.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "FlightDA.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\FlightDA.cs",
+              "RelativeDocumentMoniker": "Server\\DA\\FlightDA.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\FlightDA.cs",
+              "RelativeToolTip": "Server\\DA\\FlightDA.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAApwCoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T08:17:36.263Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 24,
+              "Title": "SeatDB.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\SeatDB.cs",
+              "RelativeDocumentMoniker": "Server\\DA\\SeatDB.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\SeatDB.cs",
+              "RelativeToolTip": "Server\\DA\\SeatDB.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAhwEcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T13:00:52.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "AirportDB.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\AirportDB.cs",
+              "RelativeDocumentMoniker": "Server\\DA\\AirportDB.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DA\\AirportDB.cs",
+              "RelativeToolTip": "Server\\DA\\AirportDB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T08:26:27.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PassengerDTO.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DTO\\PassengerDTO.cs",
+              "RelativeDocumentMoniker": "Server\\DTO\\PassengerDTO.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DTO\\PassengerDTO.cs",
+              "RelativeToolTip": "Server\\DTO\\PassengerDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T06:59:31.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "BookingDTO.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DTO\\BookingDTO.cs",
+              "RelativeDocumentMoniker": "Server\\DTO\\BookingDTO.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\DTO\\BookingDTO.cs",
+              "RelativeToolTip": "Server\\DTO\\BookingDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T07:33:28.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Server\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Server\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-13T06:32:14.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
               "Title": "WeatherForecast.cs",
-              "DocumentMoniker": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "Server\\WeatherForecast.cs",
-              "ToolTip": "C:\\Users\\sanaa\\source\\repos\\AirportSystem\\Server\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\WeatherForecast.cs",
               "RelativeToolTip": "Server\\WeatherForecast.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T12:56:39.555Z"
+              "WhenOpened": "2025-05-11T12:56:39.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\appsettings.json",
+              "RelativeDocumentMoniker": "Server\\appsettings.json",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\appsettings.json",
+              "RelativeToolTip": "Server\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-13T06:20:05.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Data.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Data.cs",
+              "RelativeDocumentMoniker": "Server\\Data.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Server\\Data.cs",
+              "RelativeToolTip": "Server\\Data.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T08:15:30.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Dashboard\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Home.razor",
+              "RelativeToolTip": "Dashboard\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-10T10:03:31.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\App.razor",
+              "RelativeDocumentMoniker": "Dashboard\\App.razor",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\App.razor",
+              "RelativeToolTip": "Dashboard\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-10T10:03:17.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Program.cs",
+              "RelativeDocumentMoniker": "Dashboard\\Program.cs",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Program.cs",
+              "RelativeToolTip": "Dashboard\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T12:27:28.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Counter.razor",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Counter.razor",
+              "RelativeDocumentMoniker": "Dashboard\\Pages\\Counter.razor",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Counter.razor",
+              "RelativeToolTip": "Dashboard\\Pages\\Counter.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-11T12:21:44.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Weather.razor",
+              "DocumentMoniker": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Weather.razor",
+              "RelativeDocumentMoniker": "Dashboard\\Pages\\Weather.razor",
+              "ToolTip": "C:\\Users\\munkh\\source\\repos\\AirportSystem\\Dashboard\\Pages\\Weather.razor",
+              "RelativeToolTip": "Dashboard\\Pages\\Weather.razor",
+              "ViewState": "AgIAAAQAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-11T12:21:52.226Z",
+              "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedHeight": 323,
+          "DockedHeight": 104,
           "SelectedChildIndex": -1,
           "Children": [
             {

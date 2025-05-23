@@ -1,4 +1,5 @@
 ﻿using ClinetApp.DTO;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 
 using System.Collections.Generic;
@@ -47,7 +48,9 @@ namespace ClientApp
 
         private readonly PrintPreviewDialog _previewDialog = new PrintPreviewDialog();
         private PassengerReadDTO Passenger;
+        private readonly Dictionary<int, Button> _seatButtons = new();
 
+        private HubConnection _hubConnection;
         public SeatSelectionForm()
 
         {
@@ -63,6 +66,8 @@ namespace ClientApp
 
             _previewDialog.Document = _printDoc;
 
+            this.Load += SeatSelectionForm_Load;
+
             try
             {
                 ConnectionService.Start();
@@ -77,6 +82,19 @@ namespace ClientApp
             this.FormClosing += SeatSelection_FormClosing;
 
 
+        }
+        private async void SeatSelectionForm_Load(object sender, EventArgs e)
+        {
+            await ConnectToSignalR();
+        }
+
+        private void MarkSeatAsBooked(int seatNumber)
+        {
+            if (_seatButtons.TryGetValue(seatNumber, out var btn))
+            {
+                btn.BackColor = Color.Red;
+                btn.Enabled = false;
+            }
         }
 
         private async void SeatSelection_FormClosing(object? sender, FormClosingEventArgs e)
@@ -180,6 +198,28 @@ namespace ClientApp
             }
 
         }
+        private async Task ConnectToSignalR()
+        {
+            _hubConnection = new HubConnectionBuilder()
+                .WithUrl("http://localhost:5106/seathub")
+                .WithAutomaticReconnect()
+                .Build();
+
+            _hubConnection.On<int, int>("ReceiveSeatBooked", (flightId, seatNumber) =>
+            {
+                if (_currentBooking != null && _currentBooking.FlightId == flightId)
+                {
+                    MarkSeatAsBooked(seatNumber);
+                }
+            });
+
+            await _hubConnection.StartAsync();
+            if (_currentBooking != null)
+            {
+                await _hubConnection.InvokeAsync("JoinFlightGroup", _currentBooking.FlightId);
+            }
+        }
+
         private async Task LoadAndShowPassenger(int passengerId)
         {
             try
@@ -310,6 +350,7 @@ namespace ClientApp
                     FlatStyle = FlatStyle.Flat
 
                 };
+                _seatButtons[seat.SeatNumber] = btn;
 
                 if (!taken)
 
@@ -402,10 +443,11 @@ namespace ClientApp
                     btn.Enabled = false;
 
                     MessageBox.Show($"Seat {seatNumber} амжилттай оноогдлоо!");
+                  
 
-                    var dr = MessageBox.Show("Boarding pass хэвлэх үү?", "Print Boarding Pass",
+                        var dr = MessageBox.Show("Boarding pass хэвлэх үү?", "Print Boarding Pass",
 
-                                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (dr == DialogResult.Yes)
 

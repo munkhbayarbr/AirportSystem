@@ -16,12 +16,14 @@ public class Program
         // Өгөгдлийн сантай холбох обьектыг singleton байдлаар бүртгэж байна.
         builder.Services.AddSingleton<AirportDB>(sp => new AirportDB("Datasource=airport.db;"));
         builder.Services.AddControllers();
-        
-        
+
+
         //SignalR бүртгэж байна.
         //client бүртгэж байна. API - д хандах боломжтой болгоно.
         //Cross origin resource sharing тодорхой хостуудаас хандах боломжтой болгоно.
         //Уг хаягаас хүсэлтүүдийг зөвшөөрнө.
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
         builder.Services.AddSignalR();
         builder.Services.AddHttpClient();
@@ -37,12 +39,20 @@ public class Program
             });
         });
 
+
         //app обьектыг үүсгэж байна.
         //http request -г чиглүүлэх route -г идэвхжүүлж байна.
         // middleware идэвхжүүлж байна.
         //Cors хэрэглэж зөвшөөрсөн хостуудыг хэрэгжүүлнэ.
         //Endpoint буюу хаягуудыг бүртгэж Controller болон signalR hub тай холбож өгнө.
+    
         var app = builder.Build();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
         app.UseRouting();
         app.UseAuthorization();
         app.UseCors("AllowBlazorClient");
@@ -51,10 +61,10 @@ public class Program
         {
             endpoints.MapControllers();
             endpoints.MapHub<FlightHub>("/flighthub");
+
         });
 
-
-
+        app.MapHub<SeatHub>("/seathub");
         // client үүсгэхэд хэрэгдэх client factory
         //хэрэглэгчдэд мэдээлэл дамжуулах SignalR HUB context
         //socket server үүсгэж асинхрон байдлаар эхлүүлнэ. client болон hub context -г дамжуулна.
