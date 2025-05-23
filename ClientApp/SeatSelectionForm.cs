@@ -92,8 +92,19 @@ namespace ClientApp
         {
             if (_seatButtons.TryGetValue(seatNumber, out var btn))
             {
-                btn.BackColor = Color.Red;
-                btn.Enabled = false;
+                if (btn.InvokeRequired)
+                {
+                    btn.Invoke(new Action(() =>
+                    {
+                        btn.BackColor = Color.Red;
+                        btn.Enabled = false;
+                    }));
+                }
+                else
+                {
+                    btn.BackColor = Color.Red;
+                    btn.Enabled = false;
+                }
             }
         }
 
@@ -179,6 +190,12 @@ namespace ClientApp
 
                 DrawAirplaneLayout();
 
+                if (_hubConnection?.State == HubConnectionState.Connected)
+                {
+                    await _hubConnection.InvokeAsync("JoinFlightGroup", _currentBooking.FlightId);
+                }
+
+
             }
 
             catch (Exception ex)
@@ -214,10 +231,7 @@ namespace ClientApp
             });
 
             await _hubConnection.StartAsync();
-            if (_currentBooking != null)
-            {
-                await _hubConnection.InvokeAsync("JoinFlightGroup", _currentBooking.FlightId);
-            }
+         
         }
 
         private async Task LoadAndShowPassenger(int passengerId)
