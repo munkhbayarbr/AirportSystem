@@ -105,7 +105,7 @@ namespace Server.Controllers
             if (booking.SeatNumber != null)
             {
                 if (dto.SeatNumber != null && dto.FlightId != null)
-                    return BadRequest(new { message = "Cannot change assigned seat." });
+                    return BadRequest(new { message = "Суудал солтх боломжгүй!" });
             }
 
                 SeatDTO seat = await airportdb.Seat.GetSeat(dto.FlightId, (int)dto.SeatNumber);

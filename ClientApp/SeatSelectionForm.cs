@@ -47,10 +47,13 @@ namespace ClientApp
         private readonly PrintDialog _printDialog = new PrintDialog();
 
         private readonly PrintPreviewDialog _previewDialog = new PrintPreviewDialog();
-        private PassengerReadDTO Passenger;
+        private PassengerReadDTO passenger;
         private readonly Dictionary<int, Button> _seatButtons = new();
+        
+        private FlightReadDTO _currentFlight;
 
         private HubConnection _hubConnection;
+
         public SeatSelectionForm()
 
         {
@@ -231,33 +234,39 @@ namespace ClientApp
             });
 
             await _hubConnection.StartAsync();
-         
+
         }
 
         private async Task LoadAndShowPassenger(int passengerId)
         {
             try
             {
-                var passenger = await _httpClient
-                    .GetFromJsonAsync<PassengerReadDTO>($"passenger/{passengerId}");
+                passenger = await _httpClient.GetFromJsonAsync<PassengerReadDTO>($"passenger/{passengerId}");
+
+
                 if (passenger == null)
                 {
                     MessageBox.Show("Passenger олдсонгүй.");
                     return;
                 }
 
-                
-                lblFname.Text ="Нэр:"+ passenger.Firstname;
-                lblLastName.Text = "Овог:" + passenger.Lastname;
-                lblBday.Text = "Төрсөн өдөр:" + passenger.Birthday.ToString("yyyy-MM-dd");
-                lblPhone.Text = "Утасны дугаар:" + passenger.PhoneNumber;
-               
 
-                
+                lblName.Text = "Нэр :" + passenger.Firstname + " " + passenger.Lastname;
+                lblBday.Text = "Төрсөн өдөр: " + passenger.Birthday.ToString("yyyy-MM-dd");
+                lblPhone.Text = "Утасны дугаар: " + passenger.PhoneNumber;
+
+
+
                 if (_currentBooking.SeatNumber.HasValue)
+                {
                     lblBookedSeat.Text = $"Суудал: {_currentBooking.SeatNumber.Value}";
+                    lblBookedSeat.BackColor = Color.Green;
+                }
                 else
+                {
                     lblBookedSeat.Text = "Суудал хараахан олгогдоогүй";
+                    lblBookedSeat.BackColor = Color.Red;
+                }
             }
             catch (Exception ex)
             {
@@ -266,157 +275,105 @@ namespace ClientApp
         }
         private async Task ShowFlightInfo(int flightId)
         {
-            var f = await _httpClient
-                .GetFromJsonAsync<FlightReadDTO>($"flight/{flightId}");
-            if (f == null) { MessageBox.Show("Flight олдсонгүй."); return; }
-
-            var info =
-               $"ID:            {f.Id}\n" +
-               $"Number:        {f.FlightNumber}\n" +
-               $"Status:        {f.Status}\n" +
-               $"From → To:     {f.Departure} → {f.Arrival}\n" +
-               $"Departs at:    {f.DepartureTime:yyyy-MM-dd HH:mm}\n" +
-               $"Arrives at:    {f.ArrivalTime:yyyy-MM-dd HH:mm}\n" +
-               $"Total Seats:   {f.SeatCount}";
-            MessageBox.Show(info, "Flight Info");
-        }
-        private void DrawAirplaneLayout()
-
-        {
-
-            panelSeats.Controls.Clear();
-
-            const int seatsPerRow = 6;
-
-            
-
-            var rowIndices = _seatList
-
-                .Select(s => (s.SeatNumber - 1) / seatsPerRow)
-
-                .Distinct()
-
-                .OrderBy(i => i)
-
-                .ToList();
-
-            var tbl = new TableLayoutPanel
+            var f = await _httpClient.GetFromJsonAsync<FlightReadDTO>($"flight/{flightId}");
+            if (f == null)
             {
-
-                Dock = DockStyle.Top,
-
-                AutoSize = true,
-
-                ColumnCount = 8,   
-
-                RowCount = rowIndices.Count + 1
-
-            };
-
-            
-
-            tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-
-            for (int i = 0; i < 3; i++) tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-
-            tbl.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20));
-
-            for (int i = 0; i < 3; i++) tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-
-            
-
-            foreach (var seat in _seatList)
-
-            {
-
-                int zeroBasedSeat = seat.SeatNumber - 1;
-
-                int rowBlock = zeroBasedSeat / seatsPerRow;      
-
-                int indexInBlock = zeroBasedSeat % seatsPerRow;    
-
-                
-
-                int tableRow = rowIndices.IndexOf(rowBlock) + 1;
-
-               
-                int col = indexInBlock < 3
-
-                    ? indexInBlock + 1
-
-                    : indexInBlock + 2;
-
-                bool taken = _takenSeatNumbers.Contains(seat.SeatNumber);
-
-                var btn = new Button
-                {
-
-                    Text = seat.SeatNumber.ToString(),
-
-                    Width = _buttonSize,
-
-                    Height = _buttonSize,
-
-                    Enabled = !taken,
-
-                    BackColor = taken ? Color.Red : Color.LightGray,
-
-                    FlatStyle = FlatStyle.Flat
-
-                };
-                _seatButtons[seat.SeatNumber] = btn;
-
-                if (!taken)
-
-                    btn.Click += SeatButton_Click;
-
-                tbl.Controls.Add(btn, col, tableRow);
-
+                MessageBox.Show("Flight олдсонгүй.");
+                return;
             }
 
-            panelSeats.Controls.Add(tbl);
-
-            panelSeats.AutoScroll = true;
-
+            _currentFlight = f; 
         }
 
+        private void DrawAirplaneLayout()
+{
+    panelSeats.Controls.Clear();
+
+    var container = new FlowLayoutPanel
+    {
+        FlowDirection = FlowDirection.TopDown,
+        AutoSize = true,
+        Dock = DockStyle.Top,
+        WrapContents = false
+    };
 
 
-        private void AddSeatButton(TableLayoutPanel tbl, int seatNumber, int row, int col)
-
+    if (_currentFlight != null)
+    {
+        var flightInfoLabel = new Label
         {
+            AutoSize = true,
+            Font = new Font("Segoe UI", 11, FontStyle.Bold),
+            Padding = new Padding(5),
+            ForeColor = Color.DarkBlue,
+            TextAlign = ContentAlignment.MiddleCenter,
+            Text = $"✈ {_currentFlight.FlightNumber} | {_currentFlight.Departure} → {_currentFlight.Arrival} | " +
+                   $"Departure: {_currentFlight.DepartureTime:yyyy-MM-dd HH:mm}"
+        };
 
-            if (!_seatList.Any(s => s.SeatNumber == seatNumber))
+        container.Controls.Add(flightInfoLabel);
+    }
 
-                return;
+  
+    const int seatsPerRow = 6;
 
-            bool taken = _takenSeatNumbers.Contains(seatNumber);
+    var rowIndices = _seatList
+        .Select(s => (s.SeatNumber - 1) / seatsPerRow)
+        .Distinct()
+        .OrderBy(i => i)
+        .ToList();
 
-            var btn = new Button
+    var tbl = new TableLayoutPanel
+    {
+        AutoSize = true,
+        ColumnCount = 8,
+        RowCount = rowIndices.Count + 1,
+        Margin = new Padding(0, 10, 0, 10)
+    };
 
-            {
+    tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+    for (int i = 0; i < 3; i++) tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+    tbl.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20));
+    for (int i = 0; i < 3; i++) tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                Text = seatNumber.ToString(),
+    foreach (var seat in _seatList)
+    {
+        int zeroBasedSeat = seat.SeatNumber - 1;
+        int rowBlock = zeroBasedSeat / seatsPerRow;
+        int indexInBlock = zeroBasedSeat % seatsPerRow;
+        int tableRow = rowIndices.IndexOf(rowBlock) + 1;
+        int col = indexInBlock < 3 ? indexInBlock + 1 : indexInBlock + 2;
 
-                Width = _buttonSize,
+        bool taken = _takenSeatNumbers.Contains(seat.SeatNumber);
 
-                Height = _buttonSize,
+        var btn = new Button
+        {
+            Text = seat.SeatNumber.ToString(),
+            Width = _buttonSize,
+            Height = _buttonSize,
+            Enabled = !taken,
+            BackColor = taken ? Color.Red : Color.LightGray,
+            FlatStyle = FlatStyle.Flat,
+            Margin = new Padding(5)
+        };
 
-                Enabled = !taken,
+        _seatButtons[seat.SeatNumber] = btn;
+        if (!taken) btn.Click += SeatButton_Click;
 
-                BackColor = taken ? Color.Red : Color.LightGray,
+        tbl.Controls.Add(btn, col, tableRow);
+    }
 
-                FlatStyle = FlatStyle.Flat
+    container.Controls.Add(tbl);
 
-            };
+    panelSeats.Controls.Add(container);
+    panelSeats.AutoScroll = true;
+}
 
-            if (!taken)
 
-                btn.Click += SeatButton_Click;
 
-            tbl.Controls.Add(btn, col, row);
 
-        }
+
+       
 
         private async void SeatButton_Click(object sender, EventArgs e)
 
@@ -424,6 +381,12 @@ namespace ClientApp
 
             if (!(sender is Button btn) || !int.TryParse(btn.Text, out var seatNumber))
 
+                return;
+            var confirm = MessageBox.Show($"Та {seatNumber} дугаартай суудлыг сонгохдоо итгэлтэй байна уу?",
+                                        "Суудал сонгох баталгаажуулалт",
+                                        MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question);
+            if (confirm != DialogResult.Yes)
                 return;
 
             var update = new BookingRecord
@@ -455,13 +418,15 @@ namespace ClientApp
                     btn.BackColor = Color.Red;
 
                     btn.Enabled = false;
+                    lblBookedSeat.Text = $"Суудал: {seatNumber}";
+                    lblBookedSeat.BackColor = Color.Green;
 
                     MessageBox.Show($"Seat {seatNumber} амжилттай оноогдлоо!");
-                  
 
-                        var dr = MessageBox.Show("Boarding pass хэвлэх үү?", "Print Boarding Pass",
 
-                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var dr = MessageBox.Show("Boarding pass хэвлэх үү?", "Print Boarding Pass",
+
+                                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (dr == DialogResult.Yes)
 
@@ -498,43 +463,53 @@ namespace ClientApp
         }
 
         private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
-
         {
-
             var g = e.Graphics;
+            int left = 50;
+            int top = 40;
 
-            var fontTitle = new Font("Arial", 16, FontStyle.Bold);
+            var fontTitle = new Font("Arial", 18, FontStyle.Bold);
+            var fontSubTitle = new Font("Arial", 12, FontStyle.Bold);
+            var fontText = new Font("Arial", 10);
+            var blackBrush = Brushes.Black;
 
-            var fontBody = new Font("Arial", 10);
+            // Draw border box
+            g.DrawRectangle(Pens.Black, left - 10, top - 10, 600, 220);
 
-            g.DrawString("BOARDING PASS", fontTitle, Brushes.Black, 100, 50);
+            // Title
+            g.DrawString("BOARDING PASS", fontTitle, blackBrush, left + 180, top);
+            top += 40;
 
-            g.DrawString($"Passenger ID: {_currentBooking.PassengerId}", fontBody, Brushes.Black, 100, 100);
+            // Passenger Information
+            g.DrawString("Passenger Name: ", fontSubTitle, blackBrush, left, top);
+            g.DrawString($"{passenger.Firstname} {passenger.Lastname}", fontText, blackBrush, left + 150, top);
+            top += 25;
 
-            g.DrawString($"Flight ID:     {_currentBooking.FlightId}", fontBody, Brushes.Black, 100, 120);
+            g.DrawString("Passport No: ", fontSubTitle, blackBrush, left, top);
+            g.DrawString($"{txtPassport.Text}", fontText, blackBrush, left + 150, top);
+            top += 25;
 
-            g.DrawString($"Seat Number:   {_currentBooking.SeatNumber}", fontBody, Brushes.Black, 100, 140);
+            // Flight Info
+            g.DrawString("Flight: ", fontSubTitle, blackBrush, left, top);
+            g.DrawString($"{_currentFlight.FlightNumber}", fontText, blackBrush, left + 150, top);
+            top += 25;
 
-            g.DrawString($"Date:          {_currentBooking.BookingDate:yyyy-MM-dd}", fontBody, Brushes.Black, 100, 160);
+            g.DrawString("Route: ", fontSubTitle, blackBrush, left, top);
+            g.DrawString($"{_currentFlight.Departure} → {_currentFlight.Arrival}", fontText, blackBrush, left + 150, top);
+            top += 25;
 
-            g.DrawRectangle(Pens.Black, 90, 40, 300, 150);
+            g.DrawString("Departure: ", fontSubTitle, blackBrush, left, top);
+            g.DrawString($"{_currentFlight.DepartureTime:yyyy-MM-dd HH:mm}", fontText, blackBrush, left + 150, top);
+            top += 25;
 
+            g.DrawString("Seat Number: ", fontSubTitle, blackBrush, left, top);
+            g.DrawString($"{lblBookedSeat.Text}", fontText, blackBrush, left + 150, top);
+            top += 25;
+
+            g.DrawString("Booking Date: ", fontSubTitle, blackBrush, left, top);
+            g.DrawString($"{_currentBooking.BookingDate:yyyy-MM-dd}", fontText, blackBrush, left + 150, top);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
     public class BookingRecord

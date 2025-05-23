@@ -606,3 +606,4 @@ C:\Users\munkh\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ref
 C:\Users\munkh\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.pdb
 C:\Users\munkh\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.genruntimeconfig.cache
 C:\Users\munkh\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ref\ClientApp.dll
+C:\Users\munkh\source\repos\AirportSystem\ClientApp\obj\Debug\net8.0-windows\ClientApp.Properties.Resources.resources
