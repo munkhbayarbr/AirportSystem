@@ -59,8 +59,12 @@ namespace ClientApp
             };
             arrivalsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             arrivalsDataGridView.CellClick += DataGridView_RowClick;
+            arrivalsDataGridView.RowTemplate.Height = 50;
+            arrivalsDataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 14);
             splitContainer.Panel1.Controls.Add(arrivalsDataGridView);
             splitContainer.Panel1.Text = "Arrivals";
+
+            
 
             departuresDataGridView = new DataGridView
             {
@@ -74,6 +78,8 @@ namespace ClientApp
             };
             departuresDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             departuresDataGridView.CellClick += DataGridView_RowClick;
+            departuresDataGridView.RowTemplate.Height = 50;
+            departuresDataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 14);
             splitContainer.Panel2.Controls.Add(departuresDataGridView);
             splitContainer.Panel2.Text = "Departures";
 
@@ -92,8 +98,8 @@ namespace ClientApp
             dgv.Columns.Add("Departure", "From");
             dgv.Columns.Add("ArrivalTime", "Time");
             dgv.Columns.Add("Status", "Status");
+            dgv.Columns["Status"].DefaultCellStyle.Font = new Font("Segoe UI", 14, FontStyle.Bold);
 
-            dgv.Columns["Status"].DefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
         }
 
 
@@ -107,8 +113,8 @@ namespace ClientApp
             dgv.Columns.Add("Arrival", "To");
             dgv.Columns.Add("DepartureTime", "Time");
             dgv.Columns.Add("Status", "Status");
+            dgv.Columns["Status"].DefaultCellStyle.Font = new Font("Segoe UI", 14, FontStyle.Bold);
 
-            dgv.Columns["Status"].DefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
         }
         /// <summary>
         /// buh nislegiig husnegtend haruulah functsiig duudna.
@@ -203,7 +209,7 @@ namespace ClientApp
                 {
                     row.Cells["Status"].Value = flight.Status;
 
-                    if (flight.Status.Contains("Delayed") || flight.Status.Contains("Canceled"))
+                    if (flight.Status.Contains("Delayed") || flight.Status.Contains("Cancelled"))
                     {
                         row.DefaultCellStyle.BackColor = Color.Yellow;
                     }
@@ -290,8 +296,8 @@ namespace ClientApp
                     Margin = new Padding(5)
                 };
 
-                lbl.MouseEnter += (s, e) => { lbl.BackColor = Color.Blue; };
-                lbl.MouseLeave += (s, e) => { lbl.BackColor = Color.White; };
+                lbl.MouseEnter += (s, e) => { lbl.BackColor = Color.Blue; lbl.ForeColor = Color.White; };
+                lbl.MouseLeave += (s, e) => { lbl.BackColor = Color.White; lbl.ForeColor = Color.Black; };
 
                 lbl.Click += (s, e) =>
                 {

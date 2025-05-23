@@ -348,7 +348,7 @@ namespace Server
                 );
 
                 var jsonContent = new StringContent(
-                    Newtonsoft.Json.JsonConvert.SerializeObject(bookUpdateDTO),
+                    JsonConvert.SerializeObject(bookUpdateDTO),
                     Encoding.UTF8,
                     "application/json"
                 );

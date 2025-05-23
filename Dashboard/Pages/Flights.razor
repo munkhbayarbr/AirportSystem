@@ -2,7 +2,18 @@
 @using Microsoft.AspNetCore.SignalR.Client
 @using Server.DTO
 @implements IDisposable
-<h1 style="background-color: #2247bf; color: white;">UlaanBator Airport  <span style="float:right;">@currentTime.ToString("yyyy-MM-dd HH:mm:ss")</span></h1>
+<h1 style="background-color: #2247bf; color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+    <span>UlaanBator Airport</span>
+
+    @if (showNotification)
+    {
+        <span style="background-color: white; color: #2247bf; padding: 2px 8px; border-radius: 10px; margin: 0 10px; font-size: 2rem; white-space: nowrap;">
+            @notificationMessage
+        </span>
+    }
+
+    <span>@currentTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+</h1>
 
 
 @if (flights == null || !flights.Any())
@@ -11,6 +22,7 @@
 }
 else
 {
+    
 
     <div style="display: flex; min-height: 100vh; background-color: #2247bf; color: white;">
 
@@ -139,6 +151,8 @@ else
         {
             UpdateFlightStatus(flight);
             InvokeAsync(StateHasChanged);
+            string msg = "Flight: " + flight.FlightNumber + " status changed to " + flight.Status + ".";
+            ShowNotification(msg);
         });
 
         await connection.StartAsync();
@@ -178,16 +192,28 @@ else
             "cancelled" => "color: white; background-color: red;",
             "delayed" => "color: white; background-color: orange;",
             "boarding" => "color: white; background-color: green;",        
-            "landed" => "color: white; background-color: darkcyan;",        
-            "departed" => "color: white; background-color: darkslategray;", 
-            "on time" => "color: white; background-color: green;",
+            "landed" => "color: white; background-color: #2247bf;",
+            "departed" => "color: white; background-color: #2247bf;",
+            "on time" => "color: white; background-color: #2247bf;",
             "flying" => "color: white; background-color: #2247bf;",
             _ => "color: black; background-color: lightgray;"
         };
 
     }
 
+    private bool showNotification = false;
+    private string notificationMessage = "";
 
+    private async Task ShowNotification(string message, int durationMs = 10000)
+    {
+        notificationMessage = message;
+        showNotification = true;
+
+        await Task.Delay(durationMs);
+
+        showNotification = false;
+        await InvokeAsync(StateHasChanged);
+    }
 
 
     /// <summary>
